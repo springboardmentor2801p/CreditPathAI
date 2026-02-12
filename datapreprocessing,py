@@ -1,0 +1,106 @@
+# creditpathai_preprocessing.py
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder, StandardScaler, MinMaxScaler
+
+print("Starting Data Preprocessing...")
+
+# -----------------------------------
+# 1. Load and Merge Datasets
+# -----------------------------------
+loan_df = pd.read_csv("backend/data/Loan.csv")
+borrower_df = pd.read_csv("backend/data/Borrower.csv")
+
+df = pd.merge(loan_df, borrower_df, on="memberId", how="inner")
+print("Datasets merged successfully.")
+
+# -----------------------------------
+# 2. Handle Missing Values
+# -----------------------------------
+num_cols = df.select_dtypes(include=['int64', 'float64']).columns
+cat_cols = df.select_dtypes(include=['object']).columns
+
+# Fill numerical columns with median
+for col in num_cols:
+    df[col].fillna(df[col].median(), inplace=True)
+
+# Fill categorical columns with mode
+for col in cat_cols:
+    df[col].fillna(df[col].mode()[0], inplace=True)
+
+print("Missing values handled.")
+
+# -----------------------------------
+# 3. Remove Duplicate Rows
+# -----------------------------------
+df.drop_duplicates(inplace=True)
+print("Duplicates removed.")
+
+# -----------------------------------
+# 4. Handle Outliers using IQR
+# -----------------------------------
+for col in num_cols:
+    Q1 = df[col].quantile(0.25)
+    Q3 = df[col].quantile(0.75)
+    IQR = Q3 - Q1
+    
+    lower = Q1 - 1.5 * IQR
+    upper = Q3 + 1.5 * IQR
+    
+    df[col] = np.where(df[col] < lower, lower, df[col])
+    df[col] = np.where(df[col] > upper, upper, df[col])
+
+print("Outliers handled using IQR method.")
+
+# -----------------------------------
+# 5. Encode Categorical Columns
+# -----------------------------------
+le = LabelEncoder()
+
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+print("Categorical features encoded.")
+
+# -----------------------------------
+# 6. Feature Engineering
+# -----------------------------------
+if 'loanAmount' in df.columns and 'annualIncome' in df.columns:
+    df['debt_to_income'] = df['loanAmount'] / (df['annualIncome'] + 1)
+
+if 'totalCreditUsed' in df.columns and 'totalCreditLimit' in df.columns:
+    df['credit_utilization'] = df['totalCreditUsed'] / (df['totalCreditLimit'] + 1)
+
+if 'totalPaidAmount' in df.columns and 'daysSinceLastPayment' in df.columns:
+    df['repayment_velocity'] = df['totalPaidAmount'] / (df['daysSinceLastPayment'] + 1)
+
+print("Feature engineering completed.")
+
+# -----------------------------------
+# 7. Standardization + Normalization
+# -----------------------------------
+scaler_std = StandardScaler()
+df[num_cols] = scaler_std.fit_transform(df[num_cols])
+
+scaler_minmax = MinMaxScaler()
+df[num_cols] = scaler_minmax.fit_transform(df[num_cols])
+
+print("Data standardized and normalized.")
+
+# -----------------------------------
+# 8. Target Mapping (if exists)
+# -----------------------------------
+if 'loanStatus' in df.columns:
+    df['loanStatus'] = df['loanStatus'].map({'Paid': 0, 'Default': 1})
+
+print("Target column mapped.")
+
+# -----------------------------------
+# 9. Save Final Dataset
+# -----------------------------------
+df.to_csv("backend/data/final_preprocessed_loan_data.csv", index=False)
+
+print("Preprocessing Complete ✅")
+print("Final dataset saved as: final_preprocessed_loan_data.csv")
+print(df.head())
