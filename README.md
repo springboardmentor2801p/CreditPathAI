@@ -1,101 +1,82 @@
-Loan Dataset — Initial Data Preprocessing
-Overview
 
-This repository contains the initial data preprocessing workflow for a loan dataset.
-The purpose of this stage is to clean and transform raw data into a structured format suitable for exploratory data analysis (EDA) and machine learning model development.
+# Loan Dataset — Initial Data Preprocessing
 
-This is the data preparation phase of a larger loan default prediction / credit-risk analysis project.
+## Overview
+This repository contains the initial preprocessing workflow for a loan dataset.
+The goal of this stage is to clean and transform raw data into a structured
+format that can be used for Exploratory Data Analysis (EDA) and machine learning.
 
-Preprocessing Tasks Performed
-Data Loading
+This is the data preparation phase of a larger Loan Default Prediction project.
 
-Dataset loaded using Pandas
+---
 
-Initial dataset shape inspected
+## Preprocessing Steps
 
-Duplicate Handling
+### 1. Data Loading
+- Load dataset using Pandas
+- Inspect dataset shape
 
-Duplicate rows identified
+### 2. Duplicate Handling
+- Identify duplicate rows
+- Remove duplicate records
 
-Duplicate records removed
+### 3. Column Cleaning
+Remove unnecessary identifier columns when present:
+- id
+- customer_id
+- name
 
-Column Cleaning
+### 4. Missing Value Treatment
+- Numeric columns → Median imputation
+- Categorical columns → Mode imputation
 
-Removes identifier columns when present:
+### 5. Outlier Treatment
+Outliers are treated using the IQR method.
 
-id
+Lower Bound = Q1 − 1.5 × IQR  
+Upper Bound = Q3 + 1.5 × IQR  
 
-customer_id
+Values outside the range are capped.
 
-name
+### 6. Feature Engineering
+The following features are created when columns exist:
+- Loan-Income Ratio
+- EMI-Income Ratio
 
-similar non-analytical fields
+### 7. Encoding
+- One-Hot Encoding applied to categorical columns
+- Boolean values converted to integers
 
-Missing Value Treatment
-Column Type	Method
-Numeric	Median Imputation
-Categorical	Mode Imputation
-Outlier Treatment
+---
 
-Outliers in numeric columns are treated using the IQR method.
-
-Lower = Q1 − 1.5 × IQR
-Upper = Q3 + 1.5 × IQR
-
-
-Values are capped within the acceptable range.
-
-Feature Engineering
-
-The following features are created when relevant columns exist:
-
-Loan-Income Ratio
-
-EMI-Income Ratio
-
-Encoding
-
-One-Hot Encoding applied to categorical columns
-
-Boolean columns converted to integer format
-
-Output
-
+## Output
 The preprocessing step generates:
 
 Preprocessed_Loan_Dataset.csv
 
+This dataset will be used in later stages:
+- Exploratory Data Analysis (EDA)
+- Feature selection
+- Machine learning model training
 
-This dataset will be used in later stages of the project:
+---
 
-Exploratory Data Analysis
+## Technologies Used
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Google Colab
 
-Feature selection
+---
 
-Model training
+## How to Run
+1. Open the notebook in Google Colab
+2. Upload the dataset CSV file
+3. Run all preprocessing cells
+4. Download the processed dataset
 
-Technologies Used
+---
 
-Python
-
-Pandas
-
-NumPy
-
-Scikit-learn
-
-Google Colab
-
-How to Run
-
-Open notebook in Google Colab
-
-Upload dataset CSV file
-
-Run preprocessing cells
-
-Download processed dataset
-
-Author
-
+## Author
 Yamini
