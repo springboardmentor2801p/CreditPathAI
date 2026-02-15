@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 def process_data(df):
@@ -24,11 +25,25 @@ def process_data(df):
     df["loan_income_ratio"] = df["loan_amount"] / df["income"]
     df["interest_burden"] = df["loan_amount"] * df["rate_of_interest"]
 
+    # Fix infinite values
+    df["loan_income_ratio"] = df["loan_income_ratio"].replace([np.inf, -np.inf], np.nan)
+    df["loan_income_ratio"] = df["loan_income_ratio"].fillna(
+        df["loan_income_ratio"].median()
+    )
+
     # Save cleaned data
     df.to_csv("data/processed/cleaned.csv", index=False)
 
     return df
+
+
 from data_ingestion import load_data
 
 df = load_data()
-process_data(df)
+df = process_data(df)
+
+print("Infinite values:\n",
+      np.isinf(df[["loan_income_ratio", "interest_burden"]]).sum())
+
+print("NaN values:\n",
+      df[["loan_income_ratio", "interest_burden"]].isnull().sum())
