@@ -1,32 +1,32 @@
-import pandas as pd
+ import pandas as pd
 
+# Load Dataset
+df = pd.read_csv("data_for_training.csv")
 
-def generate_kpi_report(file_path):
-    # Load dataset
-    df = pd.read_csv(file_path)
+print("Original Shape:", df.shape)
 
-    print("\n========== KPI REPORT ==========\n")
+# Check Missing Values
+print("\nMissing Values:")
+print(df.isnull().sum())
 
-    # Basic KPIs
-    total_customers = len(df)
-    default_rate = df['target'].mean() * 100
-    avg_income = df['monthly_income'].mean()
-    avg_expense = df['monthly_expense'].mean()
-    avg_wallet_balance = df['avg_wallet_balance'].mean()
-    avg_payment_ratio = df['on_time_payment_ratio'].mean()
-    avg_loans = df['num_loans_taken'].mean()
+# Fill Missing Values
+df.fillna(df.mean(numeric_only=True), inplace=True)
 
-    # Print KPIs
-    print(f"Total Customers               : {total_customers}")
-    print(f"Default Rate (%)              : {default_rate:.2f}%")
-    print(f"Average Monthly Income        : {avg_income:.2f}")
-    print(f"Average Monthly Expense       : {avg_expense:.2f}")
-    print(f"Average Wallet Balance        : {avg_wallet_balance:.2f}")
-    print(f"Average On-Time Payment Ratio : {avg_payment_ratio:.2f}")
-    print(f"Average Loans Taken           : {avg_loans:.2f}")
+for column in df.select_dtypes(include='object').columns:
+    df[column].fillna(df[column].mode()[0], inplace=True)
 
-    print("\n=================================\n")
+print("\nMissing values handled.")
 
+# Remove Duplicates
+df.drop_duplicates(inplace=True)
+print("Duplicates removed.")
 
-if __name__ == "__main__":
-    generate_kpi_report("cleaned_training_data.csv")
+# Convert Categorical Columns into Numeric
+df = pd.get_dummies(df, drop_first=True)
+
+print("\nAfter Preprocessing Shape:", df.shape)
+
+# Save Cleaned Data
+df.to_csv("cleaned_training_data.csv", index=False)
+
+print("\nPreprocessing Completed Successfully!")
