@@ -1,0 +1,13 @@
+# Phase 1 Requirements
+pandas==2.1.4
+numpy==1.26.2
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+
+# Logging
+colorlog==6.8.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
