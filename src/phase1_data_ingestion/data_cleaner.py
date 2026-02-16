@@ -16,10 +16,41 @@ class DataCleaner:
     @staticmethod
     def standardize_column_names(df):
         """
-        Convert column names to snake_case
+        Convert column names to snake_case matching database schema
         """
-        df.columns = df.columns.str.replace('([a-z0-9])([A-Z])', r'\1_\2', regex=True)
-        df.columns = df.columns.str.lower()
+        # Manual mapping to match database schema exactly
+        column_mapping = {
+            'memberId': 'member_id',
+            'residentialState': 'residential_state',
+            'yearsEmployment': 'years_employment',
+            'homeOwnership': 'home_ownership',
+            'annualIncome': 'annual_income',
+            'incomeVerified': 'income_verified',
+            'dtiRatio': 'dti_ratio',
+            'lengthCreditHistory': 'length_credit_history',
+            'numTotalCreditLines': 'num_total_credit_lines',
+            'numOpenCreditLines': 'num_open_credit_lines',
+            'numOpenCreditLines1Year': 'num_open_credit_lines_1year',  # Keep as 1year, not 1_year
+            'revolvingBalance': 'revolving_balance',
+            'revolvingUtilizationRate': 'revolving_utilization_rate',
+            'numDerogatoryRec': 'num_derogatory_rec',
+            'numDelinquency2Years': 'num_delinquency_2years',  # Keep as 2years
+            'numChargeoff1year': 'num_chargeoff_1year',
+            'numInquiries6Mon': 'num_inquiries_6mon',  # Keep as 6mon
+            # Loan columns
+            'loanId': 'loan_id',
+            'date': 'date',
+            'purpose': 'purpose',
+            'isJointApplication': 'is_joint_application',
+            'loanAmount': 'loan_amount',
+            'term': 'term',
+            'interestRate': 'interest_rate',
+            'monthlyPayment': 'monthly_payment',
+            'grade': 'grade',
+            'loanStatus': 'loan_status'
+        }
+        
+        df = df.rename(columns=column_mapping)
         return df
     
     @staticmethod
@@ -30,11 +61,10 @@ class DataCleaner:
         logger.info("Cleaning borrower data...")
         df_clean = df.copy()
         
-        # Standardize column names
+        # Standardize column names using manual mapping
         df_clean = DataCleaner.standardize_column_names(df_clean)
         
         # Handle missing values
-        # numOpenCreditLines has 967 missing - fill with median
         if df_clean['num_open_credit_lines'].isnull().sum() > 0:
             median_val = df_clean['num_open_credit_lines'].median()
             df_clean['num_open_credit_lines'].fillna(median_val, inplace=True)
@@ -48,7 +78,8 @@ class DataCleaner:
         ]
         
         for col in numeric_cols:
-            df_clean[col] = pd.to_numeric(df_clean[col], errors='coerce')
+            if col in df_clean.columns:
+                df_clean[col] = pd.to_numeric(df_clean[col], errors='coerce')
         
         # Remove duplicates based on member_id
         initial_count = len(df_clean)
@@ -68,7 +99,7 @@ class DataCleaner:
         logger.info("Cleaning loan data...")
         df_clean = df.copy()
         
-        # Standardize column names
+        # Standardize column names using manual mapping
         df_clean = DataCleaner.standardize_column_names(df_clean)
         
         # Parse date column
@@ -76,22 +107,18 @@ class DataCleaner:
         df_clean = df_clean.drop('date', axis=1)
         
         # Handle missing values
-        # isJointApplication - fill with 0 (assuming not joint)
         df_clean['is_joint_application'].fillna(0, inplace=True)
         
-        # loanAmount - drop rows with missing (1006 records)
+        # Drop rows with missing loan_amount
         initial_count = len(df_clean)
         df_clean = df_clean.dropna(subset=['loan_amount'])
         logger.info(f"Dropped {initial_count - len(df_clean)} rows with missing loan_amount")
         
-        # term - fill missing with mode
+        # Fill missing term with mode
         if df_clean['term'].isnull().sum() > 0:
             mode_term = df_clean['term'].mode()[0]
             df_clean['term'].fillna(mode_term, inplace=True)
             logger.info(f"Filled missing term with mode: {mode_term}")
-        
-        # monthlyPayment - calculate from loanAmount and interestRate if missing
-        # For simplicity, we'll keep as is since there are no missing values
         
         # Validate loan_status
         valid_statuses = ['Current', 'Default']
@@ -116,15 +143,18 @@ class DataCleaner:
         
         # Clean borrower
         df_borrower_clean = DataCleaner.standardize_column_names(df_borrower.copy())
-        df_borrower_clean['num_open_credit_lines'].fillna(
-            df_borrower_clean['num_open_credit_lines'].median(), inplace=True
-        )
+        if 'num_open_credit_lines' in df_borrower_clean.columns:
+            df_borrower_clean['num_open_credit_lines'].fillna(
+                df_borrower_clean['num_open_credit_lines'].median(), inplace=True
+            )
         
         # Clean loan
         df_loan_clean = DataCleaner.standardize_column_names(df_loan.copy())
-        df_loan_clean['loan_date'] = pd.to_datetime(df_loan_clean['date'], format='%m/%d/%Y', errors='coerce')
-        df_loan_clean = df_loan_clean.drop('date', axis=1)
-        df_loan_clean['is_joint_application'].fillna(0, inplace=True)
+        if 'date' in df_loan_clean.columns:
+            df_loan_clean['loan_date'] = pd.to_datetime(df_loan_clean['date'], format='%m/%d/%Y', errors='coerce')
+            df_loan_clean = df_loan_clean.drop('date', axis=1)
+        if 'is_joint_application' in df_loan_clean.columns:
+            df_loan_clean['is_joint_application'].fillna(0, inplace=True)
         
         logger.info(f"✅ Production data cleaned: {len(df_borrower_clean)} borrowers, {len(df_loan_clean)} loans")
         return df_borrower_clean, df_loan_clean
