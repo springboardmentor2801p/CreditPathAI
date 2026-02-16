@@ -2,7 +2,7 @@
 
 # 🚀 CreditPathAI – Smart Loan Recovery System
 
-![Typing Animation](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=2E8B57&center=true&vCenter=true&width=700&lines=AI-Powered+Loan+Default+Prediction;Smart+Risk+Assessment+%26+Recovery;Infosys+Internship+Project;ML-Driven+Financial+Solutions)
+![Typing Animation](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=2E8B57&center=true&vCenter=true&width=700&lines=AI-Powered+Loan+Default+Prediction;Smart+Risk+Assessment+%26+Recovery;Infosys+Internship+Project;ML-Driven+Financial+Solutions;by+ronit+shaw)
 
 <br>
 
