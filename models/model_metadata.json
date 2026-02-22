@@ -1,0 +1,50 @@
+{
+  "best_model": "XGBoost",
+  "composite_scores": {
+    "Logistic Regression": 0.7926,
+    "XGBoost": 0.8113,
+    "LightGBM": 0.8044,
+    "Ensemble": 0.8086
+  },
+  "metrics": {
+    "Logistic Regression": {
+      "auc_roc": 0.9122,
+      "f1_score": 0.6026,
+      "precision": 0.5949,
+      "recall": 0.6105,
+      "threshold": 0.81,
+      "avg_precision": 0.6463
+    },
+    "XGBoost": {
+      "auc_roc": 0.9141,
+      "f1_score": 0.6187,
+      "precision": 0.6173,
+      "recall": 0.6201,
+      "threshold": 0.3,
+      "avg_precision": 0.6698
+    },
+    "LightGBM": {
+      "auc_roc": 0.9137,
+      "f1_score": 0.6132,
+      "precision": 0.6653,
+      "recall": 0.5686,
+      "threshold": 0.35,
+      "avg_precision": 0.6691
+    },
+    "Ensemble": {
+      "auc_roc": 0.9169,
+      "f1_score": 0.6234,
+      "precision": 0.6391,
+      "recall": 0.6085,
+      "threshold": 0.48,
+      "avg_precision": 0.6762
+    }
+  },
+  "dataset_params": {
+    "dataset_size": 98994,
+    "num_features": 108,
+    "default_rate_pct": 10.01,
+    "smote_applied": true,
+    "cv_folds": 5
+  }
+}

@@ -1,0 +1,14 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/1512abd80f6e41d0b14746b5609625db/artifacts
+end_time: 1771750001855
+entry_point_name: ''
+experiment_id: '174491991988908137'
+lifecycle_stage: active
+run_id: 1512abd80f6e41d0b14746b5609625db
+run_name: LightGBM
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771749998080
+status: 3
+tags: []
+user_id: subha

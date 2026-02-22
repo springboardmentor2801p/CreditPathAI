@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/10600ad0edfb43788110e8a0ba4f6f20/artifacts
+deleted_time: 1771749194735
+end_time: 1771681045396
+entry_point_name: ''
+experiment_id: '174491991988908137'
+lifecycle_stage: deleted
+run_id: 10600ad0edfb43788110e8a0ba4f6f20
+run_name: XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771681043842
+status: 3
+tags: []
+user_id: subha

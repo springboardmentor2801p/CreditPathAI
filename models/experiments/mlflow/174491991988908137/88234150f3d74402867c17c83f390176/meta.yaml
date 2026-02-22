@@ -1,0 +1,14 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/88234150f3d74402867c17c83f390176/artifacts
+end_time: 1771749994651
+entry_point_name: ''
+experiment_id: '174491991988908137'
+lifecycle_stage: active
+run_id: 88234150f3d74402867c17c83f390176
+run_name: Logistic_Regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771749988929
+status: 3
+tags: []
+user_id: subha

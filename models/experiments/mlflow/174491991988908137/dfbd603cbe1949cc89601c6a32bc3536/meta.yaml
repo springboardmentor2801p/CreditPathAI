@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/dfbd603cbe1949cc89601c6a32bc3536/artifacts
+deleted_time: 1771749194663
+end_time: 1771601439076
+entry_point_name: ''
+experiment_id: '174491991988908137'
+lifecycle_stage: deleted
+run_id: dfbd603cbe1949cc89601c6a32bc3536
+run_name: Ensemble
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771601438985
+status: 3
+tags: []
+user_id: subha

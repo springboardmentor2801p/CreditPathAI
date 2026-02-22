@@ -1,0 +1,23 @@
+artifact_path: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/models/m-188f4ce8b347440ba4bf0f389535a62e/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.19
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.2
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-188f4ce8b347440ba4bf0f389535a62e
+model_size_bytes: 3749637
+model_uuid: m-188f4ce8b347440ba4bf0f389535a62e
+prompts: null
+run_id: f9b1719df52a481292cac79aaa11454e
+utc_time_created: '2026-02-22 08:46:42.154156'

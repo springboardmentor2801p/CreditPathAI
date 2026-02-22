@@ -1,0 +1,191 @@
+INFO:__main__:================================================================================
+INFO:__main__:PHASE 3 — CreditPathAI Model Training  [IMPROVED]
+INFO:__main__:================================================================================
+INFO:__main__:[STEP 1] Loading processed datasets...
+INFO:src.phase3_model_training.data_loader:Loading pre-split data from: D:\Infosys_Intern\CreditPathAI\data\processed
+WARNING:src.phase3_model_training.data_loader:Target column auto-assumed as last column: 'is_default'
+INFO:src.phase3_model_training.data_loader:Train: (79195, 108) | Val: (19799, 108)
+INFO:src.phase3_model_training.data_loader:Default rate -> train: 10.01% | val: 10.01%
+INFO:__main__:Total: 98994 | Features: 108 | Default rate: 10.01%
+INFO:__main__:[STEP 2] Applying SMOTE to training set...
+INFO:__main__:SMOTE: 79195 -> 142538 training samples (pos=71269, neg=71269)
+INFO:__main__:[STEP 3] Training Logistic Regression...
+INFO:src.phase3_model_training.train:MODEL 1: Training Logistic Regression...
+INFO:src.phase3_model_training.train:Best LR params: {'clf__C': 10.0}
+INFO:src.phase3_model_training.train:Best LR CV AUC: 0.9294
+INFO:src.phase3_model_training.train:Logistic Regression trained
+INFO:__main__:[STEP 4] Training XGBoost...
+INFO:src.phase3_model_training.train:MODEL 2: Training XGBoost...
+INFO:src.phase3_model_training.train:scale_pos_weight = 1.0  (neg=71269, pos=71269)
+INFO:src.phase3_model_training.train:Best XGB params: {'subsample': 0.7, 'n_estimators': 200, 'min_child_weight': 5, 'max_depth': 7, 'learning_rate': 0.05, 'gamma': 0.1, 'colsample_bytree': 1.0}
+INFO:src.phase3_model_training.train:Best XGB CV AUC: 0.9900
+INFO:src.phase3_model_training.train:XGBoost trained
+INFO:__main__:[STEP 5] Training LightGBM...
+INFO:src.phase3_model_training.train:MODEL 3: Training LightGBM...
+INFO:src.phase3_model_training.train:Best LGB params: {'subsample': 0.7, 'reg_lambda': 1.0, 'reg_alpha': 0.1, 'num_leaves': 127, 'n_estimators': 200, 'min_child_samples': 20, 'max_depth': -1, 'learning_rate': 0.05, 'colsample_bytree': 0.8}
+INFO:src.phase3_model_training.train:Best LGB CV AUC: 0.9904
+INFO:src.phase3_model_training.train:LightGBM trained
+INFO:__main__:[STEP 6] K-Fold Cross-Validation (k=5)...
+INFO:__main__:  CV Logistic Regression
+INFO:src.phase3_model_training.train:Fold 1 AUC: 0.9289
+INFO:src.phase3_model_training.train:Fold 2 AUC: 0.9311
+INFO:src.phase3_model_training.train:Fold 3 AUC: 0.9275
+INFO:src.phase3_model_training.train:Fold 4 AUC: 0.9291
+INFO:src.phase3_model_training.train:Fold 5 AUC: 0.9306
+INFO:src.phase3_model_training.train:CV AUC: 0.9294 ± 0.0013
+INFO:__main__:  CV XGBoost
+INFO:src.phase3_model_training.train:Fold 1 AUC: 0.9898
+INFO:src.phase3_model_training.train:Fold 2 AUC: 0.9900
+INFO:src.phase3_model_training.train:Fold 3 AUC: 0.9901
+INFO:src.phase3_model_training.train:Fold 4 AUC: 0.9902
+INFO:src.phase3_model_training.train:Fold 5 AUC: 0.9902
+INFO:src.phase3_model_training.train:CV AUC: 0.9901 ± 0.0002
+INFO:__main__:  CV LightGBM
+INFO:src.phase3_model_training.train:Fold 1 AUC: 0.9901
+INFO:src.phase3_model_training.train:Fold 2 AUC: 0.9902
+INFO:src.phase3_model_training.train:Fold 3 AUC: 0.9904
+INFO:src.phase3_model_training.train:Fold 4 AUC: 0.9905
+INFO:src.phase3_model_training.train:Fold 5 AUC: 0.9906
+INFO:src.phase3_model_training.train:CV AUC: 0.9904 ± 0.0002
+INFO:__main__:[STEP 7] Evaluating on validation set...
+INFO:src.phase3_model_training.evaluate:Evaluating Logistic Regression
+INFO:src.phase3_model_training.evaluate:  Auto-selected threshold: 0.81
+INFO:src.phase3_model_training.evaluate:AUC-ROC:       0.9122
+INFO:src.phase3_model_training.evaluate:Avg Precision: 0.6463
+INFO:src.phase3_model_training.evaluate:Precision:     0.5949
+INFO:src.phase3_model_training.evaluate:Recall:        0.6105
+INFO:src.phase3_model_training.evaluate:F1 Score:      0.6026
+INFO:src.phase3_model_training.evaluate:Specificity:   0.9538
+INFO:src.phase3_model_training.evaluate:Confusion Matrix: TP=1210 FP=824 FN=772 TN=16993
+INFO:src.phase3_model_training.evaluate:
+              precision    recall  f1-score   support
+
+     Current       0.96      0.95      0.96     17817
+     Default       0.59      0.61      0.60      1982
+
+    accuracy                           0.92     19799
+   macro avg       0.78      0.78      0.78     19799
+weighted avg       0.92      0.92      0.92     19799
+
+INFO:src.phase3_model_training.evaluate:Confusion matrix saved D:\Infosys_Intern\CreditPathAI\models\matrix\confusion_matrix_LogisticRegression.png
+INFO:src.phase3_model_training.evaluate:Evaluating XGBoost
+INFO:src.phase3_model_training.evaluate:  Auto-selected threshold: 0.3
+INFO:src.phase3_model_training.evaluate:AUC-ROC:       0.9141
+INFO:src.phase3_model_training.evaluate:Avg Precision: 0.6698
+INFO:src.phase3_model_training.evaluate:Precision:     0.6173
+INFO:src.phase3_model_training.evaluate:Recall:        0.6201
+INFO:src.phase3_model_training.evaluate:F1 Score:      0.6187
+INFO:src.phase3_model_training.evaluate:Specificity:   0.9572
+INFO:src.phase3_model_training.evaluate:Confusion Matrix: TP=1229 FP=762 FN=753 TN=17055
+INFO:src.phase3_model_training.evaluate:
+              precision    recall  f1-score   support
+
+     Current       0.96      0.96      0.96     17817
+     Default       0.62      0.62      0.62      1982
+
+    accuracy                           0.92     19799
+   macro avg       0.79      0.79      0.79     19799
+weighted avg       0.92      0.92      0.92     19799
+
+INFO:src.phase3_model_training.evaluate:Confusion matrix saved D:\Infosys_Intern\CreditPathAI\models\matrix\confusion_matrix_XGBoost.png
+INFO:src.phase3_model_training.evaluate:Evaluating LightGBM
+INFO:src.phase3_model_training.evaluate:  Auto-selected threshold: 0.35
+INFO:src.phase3_model_training.evaluate:AUC-ROC:       0.9137
+INFO:src.phase3_model_training.evaluate:Avg Precision: 0.6691
+INFO:src.phase3_model_training.evaluate:Precision:     0.6653
+INFO:src.phase3_model_training.evaluate:Recall:        0.5686
+INFO:src.phase3_model_training.evaluate:F1 Score:      0.6132
+INFO:src.phase3_model_training.evaluate:Specificity:   0.9682
+INFO:src.phase3_model_training.evaluate:Confusion Matrix: TP=1127 FP=567 FN=855 TN=17250
+INFO:src.phase3_model_training.evaluate:
+              precision    recall  f1-score   support
+
+     Current       0.95      0.97      0.96     17817
+     Default       0.67      0.57      0.61      1982
+
+    accuracy                           0.93     19799
+   macro avg       0.81      0.77      0.79     19799
+weighted avg       0.92      0.93      0.93     19799
+
+INFO:src.phase3_model_training.evaluate:Confusion matrix saved D:\Infosys_Intern\CreditPathAI\models\matrix\confusion_matrix_LightGBM.png
+INFO:src.phase3_model_training.evaluate:Evaluating Ensemble
+INFO:src.phase3_model_training.evaluate:  Auto-selected threshold: 0.48
+INFO:src.phase3_model_training.evaluate:AUC-ROC:       0.9169
+INFO:src.phase3_model_training.evaluate:Avg Precision: 0.6762
+INFO:src.phase3_model_training.evaluate:Precision:     0.6391
+INFO:src.phase3_model_training.evaluate:Recall:        0.6085
+INFO:src.phase3_model_training.evaluate:F1 Score:      0.6234
+INFO:src.phase3_model_training.evaluate:Specificity:   0.9618
+INFO:src.phase3_model_training.evaluate:Confusion Matrix: TP=1206 FP=681 FN=776 TN=17136
+INFO:src.phase3_model_training.evaluate:
+              precision    recall  f1-score   support
+
+     Current       0.96      0.96      0.96     17817
+     Default       0.64      0.61      0.62      1982
+
+    accuracy                           0.93     19799
+   macro avg       0.80      0.79      0.79     19799
+weighted avg       0.92      0.93      0.93     19799
+
+INFO:src.phase3_model_training.evaluate:Confusion matrix saved D:\Infosys_Intern\CreditPathAI\models\matrix\confusion_matrix_Ensemble.png
+INFO:__main__:[STEP 8] Generating evaluation report...
+INFO:src.phase3_model_training.evaluate:
+INFO:src.phase3_model_training.evaluate:======================================================================
+INFO:src.phase3_model_training.evaluate:EVALUATION REPORT
+INFO:src.phase3_model_training.evaluate:======================================================================
+INFO:src.phase3_model_training.evaluate:              Model  AUC_ROC  Precision  Recall  F1_Score  CV_AUC_Mean  CV_AUC_Std
+           Ensemble   0.9169     0.6391  0.6085    0.6234       0.9699      0.0004
+            XGBoost   0.9141     0.6173  0.6201    0.6187       0.9901      0.0002
+           LightGBM   0.9137     0.6653  0.5686    0.6132       0.9904      0.0002
+Logistic Regression   0.9122     0.5949  0.6105    0.6026       0.9294      0.0013
+INFO:src.phase3_model_training.evaluate:======================================================================
+INFO:src.phase3_model_training.evaluate:Report saved D:\Infosys_Intern\CreditPathAI\models\experiments\evaluation_report.csv
+INFO:__main__:[STEP 9] Logging experiments to MLflow...
+INFO:src.phase3_model_training.evaluate:ROC/PR curves saved D:\Infosys_Intern\CreditPathAI\models\curves\roc_pr_curves_comparison.png
+INFO:src.phase3_model_training.evaluate:Feature importance saved D:\Infosys_Intern\CreditPathAI\models\matrix\feature_importance_LogisticRegression.png
+INFO:src.phase3_model_training.evaluate:Feature importance saved D:\Infosys_Intern\CreditPathAI\models\matrix\feature_importance_XGBoost.png
+INFO:src.phase3_model_training.evaluate:Feature importance saved D:\Infosys_Intern\CreditPathAI\models\matrix\feature_importance_LightGBM.png
+WARNING:src.phase3_model_training.evaluate:No importances for Ensemble, skipping.
+INFO:src.phase3_model_training.evaluate:Model comparison chart saved D:\Infosys_Intern\CreditPathAI\models\curves\model_comparison_bar.png
+INFO:src.phase3_model_training.evaluate:MLflow run logged Logistic Regression
+INFO:src.phase3_model_training.evaluate:MLflow run logged XGBoost
+INFO:src.phase3_model_training.evaluate:MLflow run logged LightGBM
+INFO:src.phase3_model_training.evaluate:MLflow run logged Ensemble
+INFO:__main__:[STEP 10] Selecting and saving best model...
+INFO:__main__:
+INFO:__main__:=================================================================
+INFO:__main__:MODEL COMPARISON
+INFO:__main__:=================================================================
+INFO:__main__:Model                   Val AUC   CV AUC  Precision   Recall       F1
+INFO:__main__:-----------------------------------------------------------------
+INFO:__main__:Logistic Regression      0.9122   0.9294     0.5949   0.6105   0.6026
+INFO:__main__:XGBoost                  0.9141   0.9901     0.6173   0.6201   0.6187
+INFO:__main__:LightGBM                 0.9137   0.9904     0.6653   0.5686   0.6132
+INFO:__main__:Ensemble                 0.9169   0.9699     0.6391   0.6085   0.6234
+INFO:__main__:=================================================================
+INFO:__main__:Best model: XGBoost  (composite score: 0.8113)
+INFO:__main__:Best model saved D:\Infosys_Intern\CreditPathAI\models\model.pkl
+INFO:__main__:Metadata saved D:\Infosys_Intern\CreditPathAI\models\model_metadata.json
+INFO:__main__:[STEP 11] Saving training artifacts...
+INFO:src.phase3_model_training.train:Saved: D:\Infosys_Intern\CreditPathAI\models\LogisticRegression_model.pkl
+INFO:src.phase3_model_training.train:Saved: D:\Infosys_Intern\CreditPathAI\models\XGBoost_model.pkl
+INFO:src.phase3_model_training.train:Saved: D:\Infosys_Intern\CreditPathAI\models\LightGBM_model.pkl
+INFO:src.phase3_model_training.train:Saved: D:\Infosys_Intern\CreditPathAI\models\Ensemble_model.pkl
+INFO:src.phase3_model_training.train:Artifacts saved to D:\Infosys_Intern\CreditPathAI\models
+INFO:__main__:
+INFO:__main__:PHASE 3 COMPLETED SUCCESSFULLY!
+INFO:__main__:
+INFO:__main__:Deliverables:
+INFO:__main__:  3 base models + Ensemble trained
+INFO:__main__:  SMOTE applied — balanced training set
+INFO:__main__:  K-Fold CV (k=5) — all base models
+INFO:__main__:  Confusion matrices  -> D:\Infosys_Intern\CreditPathAI\models\matrix
+INFO:__main__:  ROC + PR curves     -> D:\Infosys_Intern\CreditPathAI\models\curves
+INFO:__main__:  Evaluation report   -> D:\Infosys_Intern\CreditPathAI\models\experiments\evaluation_report.csv
+INFO:__main__:  Best model          -> XGBoost  (F1=0.6187)
+INFO:__main__:  Best model saved    -> D:\Infosys_Intern\CreditPathAI\models\model.pkl
+INFO:__main__:  MLflow experiments  -> D:\Infosys_Intern\CreditPathAI\models\experiments\mlflow
+INFO:__main__:  View MLflow UI:
+INFO:__main__:    mlflow ui --backend-store-uri file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow
+INFO:__main__:
+INFO:__main__:>>> Next Step: Phase 4 — Risk Scoring & Recommendation Engine

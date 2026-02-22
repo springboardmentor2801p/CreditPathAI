@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/82a4ced6fcf741da894e498476bc1e3c/artifacts
+deleted_time: 1771697087086
+end_time: 1771601439103
+entry_point_name: ''
+experiment_id: '174491991988908137'
+lifecycle_stage: deleted
+run_id: 82a4ced6fcf741da894e498476bc1e3c
+run_name: Phase3_v2_Experiment
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771601430244
+status: 3
+tags: []
+user_id: subha

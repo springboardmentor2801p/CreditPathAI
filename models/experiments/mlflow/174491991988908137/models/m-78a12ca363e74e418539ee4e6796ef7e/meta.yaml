@@ -1,0 +1,10 @@
+artifact_location: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/models/m-78a12ca363e74e418539ee4e6796ef7e/artifacts
+creation_timestamp: 1771749994886
+experiment_id: '174491991988908137'
+last_updated_timestamp: 1771749998052
+model_id: m-78a12ca363e74e418539ee4e6796ef7e
+model_type: null
+name: model
+source_run_id: c7aee6c7cee64d5b80dc1ec2a14434bc
+status: 2
+status_message: null

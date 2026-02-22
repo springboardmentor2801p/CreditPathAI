@@ -1,0 +1,23 @@
+artifact_path: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/174491991988908137/models/m-408ec9cd04b74858af2154f69989cbcc/artifacts
+flavors:
+  lightgbm:
+    code: null
+    data: model.pkl
+    lgb_version: 4.6.0
+    model_class: lightgbm.sklearn.LGBMClassifier
+    serialization_format: cloudpickle
+    skops_trusted_types: null
+  python_function:
+    data: model.pkl
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.10.19
+mlflow_version: 3.10.0
+model_id: m-408ec9cd04b74858af2154f69989cbcc
+model_size_bytes: 2769137
+model_uuid: m-408ec9cd04b74858af2154f69989cbcc
+prompts: null
+run_id: 1512abd80f6e41d0b14746b5609625db
+utc_time_created: '2026-02-22 08:46:38.493335'

@@ -1,0 +1,10 @@
+{
+  "best_model_name": "LightGBM",
+  "model_file": "best_model.pkl",
+  "val_auc_roc": 0.9137,
+  "val_precision": 0.7428,
+  "val_recall": 0.4677,
+  "val_f1": 0.574,
+  "cv_auc_mean": 0.912,
+  "cv_auc_std": 0.0041
+}
