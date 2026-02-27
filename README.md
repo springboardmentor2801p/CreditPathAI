@@ -670,9 +670,9 @@ If you find this project helpful, please give it a ⭐ on GitHub!
 
 ---
 
-**Last Updated:** February 2024  
+**Last Updated:** February 2026 
 **Status:** 🔄 Active Development
 
-Made with ❤️ by Your Name
+Made by Ranit Shaw
 
 </div>
