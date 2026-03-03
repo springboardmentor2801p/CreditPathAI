@@ -106,6 +106,5 @@ CreditPathAI/
 
 Joe Sharwin  
 MSc Artificial Intelligence  
-Infosys Springboard Internship Project
 
 ## 📂 Project Structure
