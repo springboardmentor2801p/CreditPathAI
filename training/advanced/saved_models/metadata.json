@@ -1,0 +1,136 @@
+{
+  "trained_at": "2026-02-26T05:43:53",
+  "model_type": "advanced",
+  "random_state": 42,
+  "n_features": 47,
+  "feature_names": [
+    "isJointApplication",
+    "loanAmount",
+    "interestRate",
+    "monthlyPayment",
+    "yearsEmployment",
+    "annualIncome",
+    "dtiRatio",
+    "lengthCreditHistory",
+    "numTotalCreditLines",
+    "numOpenCreditLines",
+    "numOpenCreditLines1Year",
+    "revolvingBalance",
+    "revolvingUtilizationRate",
+    "numDerogatoryRec",
+    "numDelinquency2Years",
+    "numChargeoff1year",
+    "numInquiries6Mon",
+    "term_months",
+    "grade_score",
+    "loan_to_income_ratio",
+    "payment_to_income_ratio",
+    "repayment_velocity",
+    "loan_amortization_rate",
+    "open_credit_ratio",
+    "recent_credit_velocity",
+    "inquiry_intensity",
+    "delinquency_density",
+    "derogatory_density",
+    "estimated_credit_limit",
+    "credit_utilization_recomputed",
+    "log_loanAmount",
+    "log_annualIncome",
+    "log_revolvingBalance",
+    "interest_dti_burden",
+    "credit_stress_index",
+    "payment_pressure",
+    "credit_depth",
+    "revolving_load",
+    "incomeVerified",
+    "purpose_business",
+    "purpose_debtconsolidation",
+    "purpose_education",
+    "purpose_healthcare",
+    "purpose_homeimprovement",
+    "purpose_other",
+    "homeOwnership_own",
+    "homeOwnership_rent"
+  ],
+  "train_rows": 80000,
+  "test_rows": 20000,
+  "preprocessor_file": "preprocessor.joblib",
+  "best_model": "lightgbm",
+  "models": {
+    "xgboost": {
+      "filename": "xgboost.joblib",
+      "mlflow_run_id": "b4ef3f03238644aeab610dcf6f259a82",
+      "imbalance_tactic": "scale_pos_weight=9",
+      "hyperparameters": {
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_child_weight": 5,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "gamma": 0.1,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "scale_pos_weight": 9,
+        "eval_metric": "auc",
+        "tree_method": "hist",
+        "random_state": 42
+      },
+      "metrics": {
+        "auc_roc": 0.9246,
+        "pr_auc": 0.684,
+        "f1_default": 0.5495,
+        "cv_auc_mean": 0.9296,
+        "cv_auc_std": 0.0045,
+        "confusion_matrix": [
+          [
+            15777,
+            2222
+          ],
+          [
+            401,
+            1600
+          ]
+        ]
+      }
+    },
+    "lightgbm": {
+      "filename": "lightgbm.joblib",
+      "mlflow_run_id": "00d28de78e9a4a69bdbaed44b45e19b3",
+      "imbalance_tactic": "is_unbalance=True",
+      "hyperparameters": {
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "num_leaves": 63,
+        "max_depth": -1,
+        "min_child_samples": 20,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "reg_alpha": 0.1,
+        "reg_lambda": 1.0,
+        "is_unbalance": true,
+        "metric": "auc",
+        "random_state": 42,
+        "verbose": -1
+      },
+      "metrics": {
+        "auc_roc": 0.9262,
+        "pr_auc": 0.6881,
+        "f1_default": 0.5347,
+        "cv_auc_mean": 0.928,
+        "cv_auc_std": 0.0045,
+        "confusion_matrix": [
+          [
+            15396,
+            2603
+          ],
+          [
+            321,
+            1680
+          ]
+        ]
+      }
+    }
+  },
+  "mlflow_experiment": "CreditPathAI_Advanced"
+}
