@@ -1,37 +1,58 @@
-# CreditPathAI - Milestone 1  
-## Project Setup & Problem Understanding
+# CreditPathAI
 
-### Project Overview
-CreditPathAI is a machine learning based system designed to evaluate borrower credit risk and provide actionable recommendations for financial institutions.
-
-The goal of this project is to build an intelligent credit risk assessment system that analyzes borrower data and predicts the probability of loan default.
+CreditPathAI is a project that analyzes credit-related data to help understand customer financial behavior and support future credit risk prediction.
 
 ---
 
-### Problem Statement
-Traditional credit scoring systems often fail to evaluate borrowers with limited credit history.  
-CreditPathAI aims to solve this problem by using alternative financial data and machine learning models to predict credit risk more accurately.
+## Milestone 1 – Project Setup & Baseline Model
 
----
+Objective:  
+Set up the project structure and create a baseline machine learning model.
 
-### Objectives
-- Build a data-driven credit risk assessment system
-- Analyze borrower financial behavior
-- Predict loan default probability
-- Provide recommendations for lenders
+**Tasks Completed:**
+- Created project repository and folder structure.
+- Loaded dataset for credit analysis.
+- Performed initial preprocessing.
+- Built a baseline model for credit prediction.
 
----
-
-### Technologies Used
+**Tools Used**:
 - Python
-- PostgreSQL
 - Pandas
 - Scikit-learn
-- XGBoost
-- LightGBM
-- FastAPI
-- Git & GitHub
 
 ---
 
-### Project Structure
+## Milestone 2 – Data Ingestion & Exploratory Data Analysis
+
+Objective:  
+Build a data ingestion pipeline and perform exploratory data analysis (EDA).
+
+**Tasks Completed:**
+- Imported multiple CSV datasets.
+- Created a data ingestion pipeline using Python.
+- Stored data in a SQLite database.
+- Performed basic EDA and data cleaning.
+- Generated cleaned training dataset for further modeling.
+
+**Tools Used:**
+- Python
+- Pandas
+- SQLite
+
+---
+
+## Project Structure
+CreditPathAI/
+│
+├── Data/
+│ ├── cleaned_training_data.csv
+│ ├── creditpathai.db
+│ ├── data_01.csv
+│ ├── data_02.csv
+│ └── data_for_training.csv
+│
+├── src/
+│ ├── ingestion.py
+│ ├── preprocessing.py
+│ └── kpi_analysis.py
+
