@@ -1,0 +1,44 @@
+# -----------------------------
+# Core Language & Environment
+# -----------------------------
+python-dotenv
+
+# -----------------------------
+# Data Storage & Processing
+# -----------------------------
+pandas
+dask[dataframe]
+openpyxl
+xlrd
+sqlite-utils
+sqlalchemy
+psycopg2-binary
+
+# -----------------------------
+# Machine Learning
+# -----------------------------
+scikit-learn
+xgboost
+lightgbm
+
+# -----------------------------
+# ML Experiment Tracking
+# -----------------------------
+mlflow
+
+# -----------------------------
+# API & Services
+# -----------------------------
+fastapi
+uvicorn
+
+# -----------------------------
+# Logging & Monitoring
+# -----------------------------
+loguru
+
+# -----------------------------
+# Utilities
+# -----------------------------
+numpy
+requests
