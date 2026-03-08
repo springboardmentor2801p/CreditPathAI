@@ -1,14 +1,18 @@
 """
-CreditPathAI - Data Preprocessing Pipeline
-------------------------------------------
-STEP 1: Data Ingestion
-STEP 2: Data Cleaning
-STEP 3: Data Preprocessing
-STEP 4: Save Final Dataset
+CreditPathAI - End-to-End ML Pipeline
+-------------------------------------
 """
 
 import pandas as pd
 import numpy as np
+import joblib
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 
 
 # =====================================================
@@ -32,11 +36,9 @@ print("Initial Shape:", df.shape)
 
 print("\nSTEP 2: Data Cleaning")
 
-# Remove duplicates
 df = df.drop_duplicates()
 
-# Fix numeric data types
-num_fix_cols = [
+num_cols = [
     "loanAmount",
     "interestRate",
     "monthlyPayment",
@@ -45,23 +47,15 @@ num_fix_cols = [
     "revolvingUtilizationRate"
 ]
 
-for col in num_fix_cols:
+for col in num_cols:
     df[col] = pd.to_numeric(df[col], errors="coerce")
 
-# Handle missing values
 for col in df.select_dtypes(include=["int64", "float64"]).columns:
     df[col] = df[col].fillna(df[col].median())
 
 for col in df.select_dtypes(include=["object"]).columns:
     df[col] = df[col].fillna(df[col].mode()[0])
 
-# Standardize categorical text
-text_cols = ["purpose", "homeOwnership", "grade"]
-for col in text_cols:
-    if col in df.columns:
-        df[col] = df[col].str.lower().str.strip()
-
-# Remove invalid records
 df = df[(df["loanAmount"] > 0) & (df["annualIncome"] > 0)]
 
 print("Data cleaning completed.")
@@ -73,17 +67,15 @@ print("Data cleaning completed.")
 
 print("\nSTEP 3: Data Preprocessing")
 
-# Target variable creation
-if "loanStatus" in df.columns:
-    df["default"] = df["loanStatus"].apply(
-        lambda x: 1 if str(x).lower() == "default" else 0
-    )
+# Target variable
+df["default"] = df["loanStatus"].apply(
+    lambda x: 1 if str(x).lower() in ["default", "charged off"] else 0
+)
 
-# Drop non-predictive columns
-cols_to_drop = ["loanId", "memberId", "date"]
-df = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
+# Drop unnecessary columns
+df = df.drop(columns=["loanId", "memberId", "date", "loanStatus"])
 
-# Ordinal encoding (yearsEmployment)
+# Ordinal encoding
 employment_map = {
     "< 1 year": 0,
     "1 year": 1,
@@ -92,32 +84,85 @@ employment_map = {
     "10+ years": 10
 }
 
-if "yearsEmployment" in df.columns:
-    df["yearsEmployment"] = df["yearsEmployment"].map(employment_map)
-    df["yearsEmployment"] = df["yearsEmployment"].fillna(
-        df["yearsEmployment"].median()
-    )
+df["yearsEmployment"] = df["yearsEmployment"].map(employment_map)
+df["yearsEmployment"] = df["yearsEmployment"].fillna(df["yearsEmployment"].median())
 
-# One-hot encode categorical variables
+# One hot encoding
 cat_cols = ["purpose", "grade", "homeOwnership", "term", "residentialState"]
 
-df = pd.get_dummies(
-    df,
-    columns=[c for c in cat_cols if c in df.columns],
-    drop_first=True
-)
+df = pd.get_dummies(df, columns=cat_cols, drop_first=True)
 
 print("Data preprocessing completed.")
-
-
-# =====================================================
-# STEP 4: Save Final Dataset
-# =====================================================
-
-output_path = "backend/data/final_preprocessed_loan_data.csv"
-df.to_csv(output_path, index=False)
-
-print("Preprocessing Complete ✅")
-print(f"Final dataset saved as: {output_path}")
 print("Final Shape:", df.shape)
-print(df.head())
+
+
+# =====================================================
+# STEP 4: Train Models
+# =====================================================
+
+print("\nSTEP 4: Training Models")
+
+X = df.drop("default", axis=1)
+y = df["default"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Logistic Regression
+lr = LogisticRegression(max_iter=2000)
+lr.fit(X_train, y_train)
+
+# XGBoost
+xgb = XGBClassifier(
+    n_estimators=200,
+    learning_rate=0.05,
+    max_depth=6,
+    random_state=42
+)
+
+xgb.fit(X_train, y_train)
+
+# LightGBM
+lgb = LGBMClassifier(
+    n_estimators=200,
+    learning_rate=0.05,
+    max_depth=6,
+    random_state=42
+)
+
+lgb.fit(X_train, y_train)
+
+print("Model training completed.")
+
+
+# =====================================================
+# STEP 5: Model Evaluation
+# =====================================================
+
+print("\nSTEP 5: Model Evaluation")
+
+y_prob_lr = lr.predict_proba(X_test)[:, 1]
+y_prob_xgb = xgb.predict_proba(X_test)[:, 1]
+y_prob_lgb = lgb.predict_proba(X_test)[:, 1]
+
+auc_lr = roc_auc_score(y_test, y_prob_lr)
+auc_xgb = roc_auc_score(y_test, y_prob_xgb)
+auc_lgb = roc_auc_score(y_test, y_prob_lgb)
+
+print("\nModel Performance (AUC-ROC)")
+print("Logistic Regression:", auc_lr)
+print("XGBoost:", auc_xgb)
+print("LightGBM:", auc_lgb)
+
+
+# =====================================================
+# STEP 6: Save Best Model
+# =====================================================
+
+print("\nSTEP 6: Saving Best Model")
+
+joblib.dump(xgb, "backend/model/xgb_model.pkl")
+
+print("Best model saved as: backend/model/xgb_model.pkl")
+print("Pipeline completed successfully ✅")
