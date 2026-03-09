@@ -1,0 +1,56 @@
+INFO:__main__:================================================================================
+INFO:__main__:PHASE 4 -- CreditPathAI: Risk Scoring & Recommendation Engine
+INFO:__main__:================================================================================
+INFO:__main__:[STEP 1] Loading Phase 3 best model...
+INFO:src.phase4_risk_scoring.risk_scorer:Loaded model: XGBClassifier  (D:\Infosys_Intern\CreditPathAI\models\model.pkl)
+INFO:src.phase4_risk_scoring.risk_scorer:Feature set  : 108 features
+INFO:__main__:[STEP 2] Batch scoring validation set...
+INFO:src.phase4_risk_scoring.risk_scorer:Scored 19,799 applications | Low: 16281 | Medium: 1783 | High: 853 | Very High: 882
+INFO:__main__:Scores saved -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\scores\validation_scores.csv
+INFO:__main__:[STEP 3] Analysing risk distribution...
+INFO:__main__:  Low         : 16,281 ( 82.2%)
+INFO:__main__:  Medium      :  1,783 (  9.0%)
+INFO:__main__:  High        :    853 (  4.3%)
+INFO:__main__:  Very High   :    882 (  4.5%)
+INFO:__main__:  Mean P(Default) : 0.1053
+INFO:__main__:  Mean Risk Score : 894.7 / 1000
+INFO:__main__:  High+ Risk      : 8.76%
+INFO:__main__:[STEP 4] Generating visualisations...
+INFO:__main__:Risk distribution chart saved D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\risk_tier_distribution.png
+INFO:__main__:Score histogram saved D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\score_distributions.png
+INFO:__main__:Calibration chart saved D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\calibration_chart.png
+INFO:__main__:[STEP 5] Generating sample recommendations...
+INFO:src.phase4_risk_scoring.recommender:Recommendation: APPROVE | Tier: Low | Score: 951 | Rate: 6.5%
+INFO:__main__:  [Low      ] APPROVE                Rate: 6.5%  Score: 951
+INFO:src.phase4_risk_scoring.recommender:Recommendation: CONDITIONAL_APPROVE | Tier: Medium | Score: 794 | Rate: 11.0%
+INFO:__main__:  [Medium   ] CONDITIONAL_APPROVE    Rate: 11.0%  Score: 794
+INFO:src.phase4_risk_scoring.recommender:Recommendation: REFER | Tier: High | Score: 408 | Rate: 17.0%
+INFO:__main__:  [High     ] REFER                  Rate: 17.0%  Score: 408
+INFO:src.phase4_risk_scoring.recommender:Recommendation: DECLINE | Tier: Very High | Score: 32 | Rate: 24.0%
+INFO:__main__:  [Very High] DECLINE                Rate: 24.0%  Score: 32
+INFO:__main__:Sample recommendations saved -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\sample_recommendations.json
+INFO:__main__:[STEP 6] Generating SHAP / importance explanations...
+WARNING:src.phase4_risk_scoring.explainer:SHAP init failed (could not convert string to float: '[5E-1]') -- falling back to importances
+INFO:__main__:  [Low      ] method=feature_importance  top_factor=credit_utilization_bucket_Medium
+INFO:__main__:  [Medium   ] method=feature_importance  top_factor=credit_utilization_bucket_Medium
+INFO:__main__:  [High     ] method=feature_importance  top_factor=credit_utilization_bucket_Medium
+INFO:__main__:  [Very High] method=feature_importance  top_factor=credit_utilization_bucket_Medium
+WARNING:src.phase4_risk_scoring.explainer:SHAP not available -- summary plot skipped
+INFO:__main__:[STEP 7] Generating Phase 4 report...
+INFO:__main__:Report saved -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\phase4_report.json
+INFO:__main__:[STEP 8] Logging to MLflow...
+INFO:__main__:MLflow run logged successfully
+INFO:__main__:
+INFO:__main__:PHASE 4 COMPLETED SUCCESSFULLY!
+INFO:__main__:
+INFO:__main__:Deliverables:
+INFO:__main__:  Scored 19,799 applications
+INFO:__main__:  Tiers: Low=16,281 | Medium=1,783 | High=853 | Very High=882
+INFO:__main__:  Risk charts          -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports
+INFO:__main__:  Recommendations JSON -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\reports\sample_recommendations.json
+INFO:__main__:  SHAP explanations    -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\explanations
+INFO:__main__:  Scored CSV           -> D:\Infosys_Intern\CreditPathAI\models\phase4_outputs\scores\validation_scores.csv
+INFO:__main__:  MLflow UI:
+INFO:__main__:    mlflow ui --backend-store-uri file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow
+INFO:__main__:
+INFO:__main__:>>> Next Step: Phase 5 -- Dashboard & API Deployment

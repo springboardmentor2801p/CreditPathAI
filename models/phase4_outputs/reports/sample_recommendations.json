@@ -1,0 +1,83 @@
+[
+  {
+    "decision": "APPROVE",
+    "risk_tier": "Low",
+    "risk_score": 951,
+    "p_default": 0.04859999939799309,
+    "interest_rate_min": 5.5,
+    "interest_rate_max": 9.0,
+    "interest_rate_rec": 6.5,
+    "max_loan_multiplier": 10.0,
+    "conditions": [],
+    "improvement_tips": [],
+    "explanation": "Strong credit indicators — score 951/1000, 4.9% estimated default probability. You qualify for our most competitive interest rates."
+  },
+  {
+    "decision": "CONDITIONAL_APPROVE",
+    "risk_tier": "Medium",
+    "risk_score": 794,
+    "p_default": 0.2062000036239624,
+    "interest_rate_min": 9.0,
+    "interest_rate_max": 14.0,
+    "interest_rate_rec": 11.0,
+    "max_loan_multiplier": 6.0,
+    "conditions": [
+      "Provide 3 months of recent bank statements",
+      "Maintain debt-to-income ratio below 40%"
+    ],
+    "improvement_tips": [
+      "Your risk score is 794/1000. Improving to 750+ unlocks lower interest rates."
+    ],
+    "explanation": "Moderate credit risk — score 794/1000 (20.6% default probability). Approval is possible with standard documentation."
+  },
+  {
+    "decision": "REFER",
+    "risk_tier": "High",
+    "risk_score": 408,
+    "p_default": 0.5918999910354614,
+    "interest_rate_min": 14.0,
+    "interest_rate_max": 20.0,
+    "interest_rate_rec": 17.0,
+    "max_loan_multiplier": 3.0,
+    "conditions": [
+      "Provide 6 months of bank statements",
+      "Co-signer or guarantor required",
+      "Loan capped at 3x monthly income",
+      "Collateral may be required for amounts above INR 2 lakh"
+    ],
+    "improvement_tips": [
+      "Your risk score is 408/1000. Improving to 750+ unlocks lower interest rates.",
+      "Pay all EMIs and credit card bills on time for 6+ months",
+      "Reduce outstanding revolving credit balances",
+      "Avoid applying for new credit in the next 6 months",
+      "Dispute any incorrect entries on your credit report"
+    ],
+    "explanation": "Elevated default risk — score 408/1000 (59.2% probability). A co-signer or collateral can support a conditional approval."
+  },
+  {
+    "decision": "DECLINE",
+    "risk_tier": "Very High",
+    "risk_score": 32,
+    "p_default": 0.9682000279426575,
+    "interest_rate_min": 20.0,
+    "interest_rate_max": 28.0,
+    "interest_rate_rec": 24.0,
+    "max_loan_multiplier": 1.5,
+    "conditions": [
+      "Referred for manual underwriting review",
+      "Full income and asset documentation required",
+      "Collateral mandatory",
+      "Prior credit issues must be explained in writing"
+    ],
+    "improvement_tips": [
+      "Your risk score is 32/1000. Improving to 750+ unlocks lower interest rates.",
+      "Pay all EMIs and credit card bills on time for 6+ months",
+      "Reduce outstanding revolving credit balances",
+      "Avoid applying for new credit in the next 6 months",
+      "Dispute any incorrect entries on your credit report",
+      "Consider a secured loan or credit-builder product",
+      "Maintain a savings buffer equal to 3 months of EMI"
+    ],
+    "explanation": "Very high credit risk — score 32/1000 (96.8% probability). We recommend credit improvement before reapplying. See tips below."
+  }
+]

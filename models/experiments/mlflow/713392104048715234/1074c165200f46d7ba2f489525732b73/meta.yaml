@@ -1,0 +1,14 @@
+artifact_uri: file:///D:/Infosys_Intern/CreditPathAI/models/experiments/mlflow/713392104048715234/1074c165200f46d7ba2f489525732b73/artifacts
+end_time: 1771752383268
+entry_point_name: ''
+experiment_id: '713392104048715234'
+lifecycle_stage: active
+run_id: 1074c165200f46d7ba2f489525732b73
+run_name: Phase4_RiskScoring
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1771752383198
+status: 3
+tags: []
+user_id: subha

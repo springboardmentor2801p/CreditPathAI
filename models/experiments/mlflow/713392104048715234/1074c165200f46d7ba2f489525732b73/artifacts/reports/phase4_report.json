@@ -1,0 +1,121 @@
+{
+  "phase": "Phase 4 - Risk Scoring & Recommendation Engine",
+  "model_type": "XGBClassifier",
+  "features_used": 108,
+  "applications_scored": 19799,
+  "risk_distribution": {
+    "total": 19799,
+    "tier_counts": {
+      "Low": 16281,
+      "Medium": 1783,
+      "Very High": 882,
+      "High": 853
+    },
+    "tier_pct": {
+      "Low": 82.23,
+      "Medium": 9.01,
+      "Very High": 4.45,
+      "High": 4.31
+    },
+    "mean_p_default": 0.1053,
+    "mean_risk_score": 894.7,
+    "high_risk_pct": 8.76
+  },
+  "sample_recommendations": [
+    {
+      "decision": "APPROVE",
+      "risk_tier": "Low",
+      "risk_score": 951,
+      "p_default": 0.04859999939799309,
+      "interest_rate_min": 5.5,
+      "interest_rate_max": 9.0,
+      "interest_rate_rec": 6.5,
+      "max_loan_multiplier": 10.0,
+      "conditions": [],
+      "improvement_tips": [],
+      "explanation": "Strong credit indicators — score 951/1000, 4.9% estimated default probability. You qualify for our most competitive interest rates."
+    },
+    {
+      "decision": "CONDITIONAL_APPROVE",
+      "risk_tier": "Medium",
+      "risk_score": 794,
+      "p_default": 0.2062000036239624,
+      "interest_rate_min": 9.0,
+      "interest_rate_max": 14.0,
+      "interest_rate_rec": 11.0,
+      "max_loan_multiplier": 6.0,
+      "conditions": [
+        "Provide 3 months of recent bank statements",
+        "Maintain debt-to-income ratio below 40%"
+      ],
+      "improvement_tips": [
+        "Your risk score is 794/1000. Improving to 750+ unlocks lower interest rates."
+      ],
+      "explanation": "Moderate credit risk — score 794/1000 (20.6% default probability). Approval is possible with standard documentation."
+    },
+    {
+      "decision": "REFER",
+      "risk_tier": "High",
+      "risk_score": 408,
+      "p_default": 0.5918999910354614,
+      "interest_rate_min": 14.0,
+      "interest_rate_max": 20.0,
+      "interest_rate_rec": 17.0,
+      "max_loan_multiplier": 3.0,
+      "conditions": [
+        "Provide 6 months of bank statements",
+        "Co-signer or guarantor required",
+        "Loan capped at 3x monthly income",
+        "Collateral may be required for amounts above INR 2 lakh"
+      ],
+      "improvement_tips": [
+        "Your risk score is 408/1000. Improving to 750+ unlocks lower interest rates.",
+        "Pay all EMIs and credit card bills on time for 6+ months",
+        "Reduce outstanding revolving credit balances",
+        "Avoid applying for new credit in the next 6 months",
+        "Dispute any incorrect entries on your credit report"
+      ],
+      "explanation": "Elevated default risk — score 408/1000 (59.2% probability). A co-signer or collateral can support a conditional approval."
+    },
+    {
+      "decision": "DECLINE",
+      "risk_tier": "Very High",
+      "risk_score": 32,
+      "p_default": 0.9682000279426575,
+      "interest_rate_min": 20.0,
+      "interest_rate_max": 28.0,
+      "interest_rate_rec": 24.0,
+      "max_loan_multiplier": 1.5,
+      "conditions": [
+        "Referred for manual underwriting review",
+        "Full income and asset documentation required",
+        "Collateral mandatory",
+        "Prior credit issues must be explained in writing"
+      ],
+      "improvement_tips": [
+        "Your risk score is 32/1000. Improving to 750+ unlocks lower interest rates.",
+        "Pay all EMIs and credit card bills on time for 6+ months",
+        "Reduce outstanding revolving credit balances",
+        "Avoid applying for new credit in the next 6 months",
+        "Dispute any incorrect entries on your credit report",
+        "Consider a secured loan or credit-builder product",
+        "Maintain a savings buffer equal to 3 months of EMI"
+      ],
+      "explanation": "Very high credit risk — score 32/1000 (96.8% probability). We recommend credit improvement before reapplying. See tips below."
+    }
+  ],
+  "artifacts": {
+    "scored_csv": "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\scores\\validation_scores.csv",
+    "risk_dist_chart": "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\reports\\risk_tier_distribution.png",
+    "score_histogram": "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\reports\\score_distributions.png",
+    "calibration_chart": "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\reports\\calibration_chart.png",
+    "recommendations_json": "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\reports\\sample_recommendations.json",
+    "explanation_plots": [
+      "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\explanations\\importance_sample_Low.png",
+      "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\explanations\\importance_sample_Medium.png",
+      "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\explanations\\importance_sample_High.png",
+      "D:\\Infosys_Intern\\CreditPathAI\\models\\phase4_outputs\\explanations\\importance_sample_Very_High.png"
+    ],
+    "shap_summary": ""
+  }
+}
