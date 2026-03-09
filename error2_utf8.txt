@@ -1,0 +1,148 @@
+﻿python : Traceback (most 
+recent call last):
+At line:1 char:1
++ python 
+recommendation_engine.py > 
+error2.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (Traceba  
+  ck (most recent call las   
+ t)::String) [], RemoteEx    
+ception
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+  File "D:\jai\Python-Workspa
+ce\Credit-Path-AI\recommendat
+ion_engine.py", line 119, in 
+<module>
+    result = expected_loss_en
+gine(input_df, model)
+  File "D:\jai\Python-Workspa
+ce\Credit-Path-AI\recommendat
+ion_engine.py", line 24, in 
+expected_loss_engine
+    prob = model.predict_prob
+a(input_data)[0][1]
+           ~~~~~~~~~~~~~~~~~~
+~^^^^^^^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\pipeline.py"
+, line 904, in predict_proba
+    Xt = 
+transform.transform(Xt)
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\utils\_set_o
+utput.py", line 316, in 
+wrapped
+    data_to_wrap = f(self, 
+X, *args, **kwargs)
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\compose\_col
+umn_transformer.py", line 
+1096, in transform
+    Xs = self._call_func_on_t
+ransformers(
+        X,
+    ...<3 lines>...
+        
+routed_params=routed_params,
+    )
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\compose\_col
+umn_transformer.py", line 
+897, in 
+_call_func_on_transformers
+    return Parallel(n_jobs=se
+lf.n_jobs)(jobs)
+           ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\utils\parall
+el.py", line 82, in __call__
+    return super().__call__(i
+terable_with_config_and_warni
+ng_filters)
+           ~~~~~~~~~~~~~~~~^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\joblib\parallel.py",
+ line 1918, in __call__
+    return output if 
+self.return_generator else 
+list(output)
+                             
+                   
+~~~~^^^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\joblib\parallel.py",
+ line 1847, in 
+_get_sequential_output
+    res = func(*args, 
+**kwargs)
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\utils\parall
+el.py", line 147, in __call__
+    return 
+self.function(*args, 
+**kwargs)
+           ~~~~~~~~~~~~~^^^^^
+^^^^^^^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\pipeline.py"
+, line 1520, in 
+_transform_one
+    res = 
+transformer.transform(X, 
+**params.transform)
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\utils\_set_o
+utput.py", line 316, in 
+wrapped
+    data_to_wrap = f(self, 
+X, *args, **kwargs)
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\preprocessin
+g\_encoders.py", line 1043, 
+in transform
+    X_int, X_mask = 
+self._transform(
+                    
+~~~~~~~~~~~~~~~^
+        X,
+        ^^
+    ...<2 lines>...
+        warn_on_unknown=warn_
+on_unknown,
+        ^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
+    )
+    ^
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\preprocessin
+g\_encoders.py", line 210, 
+in _transform
+    diff, valid_mask = 
+_check_unknown(Xi, 
+self.categories_[i], 
+return_mask=True)
+                       ~~~~~~
+~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Anaconda\Lib\site-
+packages\sklearn\utils\_encod
+e.py", line 313, in 
+_check_unknown
+    if xp.any(xp.isnan(known_
+values)):
+              
+~~~~~~~~^^^^^^^^^^^^^^
+TypeError: ufunc 'isnan' not 
+supported for the input 
+types, and the inputs could 
+not be safely coerced to any 
+supported types according to 
+the casting rule ''safe''
