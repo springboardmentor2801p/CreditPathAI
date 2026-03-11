@@ -1,8 +1,7 @@
 # expected_loss_engine.py
 import joblib
 import pandas as pd
-
-def expected_loss_engine(input_data, model):
+def risk_scoring_engine(input_data, model):
     """
     Calculate expected loss for a loan and determine recovery strategy.
 
@@ -21,13 +20,13 @@ def expected_loss_engine(input_data, model):
     """
 
     # Step 1: Predict probability of default
-    prob = model.predict_proba(input_data)[0][1]
+    prob = 1 - model.predict_proba(input_data)[0][1]
 
     # Step 2: Get loan exposure
     loan_amount = input_data["loanAmount"].iloc[0]
 
     # Step 3: Calculate expected loss
-    expected_loss = loan_amount - (prob * loan_amount)
+    expected_loss = prob * loan_amount
 
     # Step 4: Decide recovery strategy based on expected loss
     if expected_loss < 50000:
@@ -67,7 +66,7 @@ def expected_loss_engine(input_data, model):
         }
 
     return {
-        "current_probability": float(prob),
+        "default_probability": float(prob),
         "expected_loss": float(expected_loss),
         "decision_plan": decision
     }
@@ -90,7 +89,7 @@ input_schema = ['purpose', 'isJointApplication', 'loanAmount', 'term', 'interest
 input_data = {
     "purpose": "debtconsolidation",
     "isJointApplication": 0,
-    "loanAmount": 400000,
+    "loanAmount": 40000000,
     "term": "36 months",
     "interestRate": 15,
     "monthlyPayment": 13500,
@@ -98,22 +97,22 @@ input_data = {
     "residentialState": "CA",
     "yearsEmployment": "10+ years",
     "homeOwnership": "mortgage",
-    "annualIncome": 200000,
+    "annualIncome": 20000,
     "incomeVerified": 0,
     "dtiRatio": 18.4,
     "lengthCreditHistory": 12,
-    "numTotalCreditLines": 22,
-    "numOpenCreditLines": 8,
-    "numOpenCreditLines1Year": 3,
-    "revolvingBalance": 75000,
-    "revolvingUtilizationRate": 42.5,
+    "numTotalCreditLines": 2,
+    "numOpenCreditLines": 1,
+    "numOpenCreditLines1Year": 1,
+    "revolvingBalance": 7500,
+    "revolvingUtilizationRate": 4.25,
     "numDerogatoryRec": 0,
-    "numDelinquency2Years": 1,
+    "numDelinquency2Years": 0,
     "numChargeoff1year": 0,
-    "numInquiries6Mon": 2
+    "numInquiries6Mon": 0
 }
 
 model = joblib.load(r"D:\jai\Python-Workspace\Credit-Path-AI\models\model_pipeline.pkl")
 input_df = prepare_input(input_data)
-result = expected_loss_engine(input_df, model)
+result = risk_scoring_engine(input_df, model)
 print(result)
