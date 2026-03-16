@@ -1,8 +1,17 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from recommendation_engine import risk_scoring_engine, prepare_input, model
 
 app = FastAPI(title="CreditPath AI Risk Scoring API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # input structure
 class BorrowerInput(BaseModel):
