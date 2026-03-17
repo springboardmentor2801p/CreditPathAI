@@ -1,0 +1,15 @@
+=== Testing 5 rows with ACTUAL loanStatus = 0 (Expected Non-Default) ===
+Row 1: FAIL | Pred=1 (Prob: 0.7842) | Band=High
+Row 2: PASS | Pred=0 (Prob: 0.0522) | Band=Very Low
+Row 3: PASS | Pred=0 (Prob: 0.2579) | Band=Low
+Row 4: PASS | Pred=0 (Prob: 0.1792) | Band=Very Low
+Row 5: PASS | Pred=0 (Prob: 0.0140) | Band=Very Low
+--> Class 0 Accuracy: 4/5 (80.0%)
+
+=== Testing 5 rows with ACTUAL loanStatus = 1 (Expected Default) ===
+Row 1: PASS | Pred=1 (Prob: 0.8899) | Band=Very High
+Row 2: PASS | Pred=1 (Prob: 0.8693) | Band=Very High
+Row 3: PASS | Pred=1 (Prob: 0.8606) | Band=Very High
+Row 4: PASS | Pred=1 (Prob: 0.8341) | Band=Very High
+Row 5: PASS | Pred=1 (Prob: 0.9867) | Band=Very High
+--> Class 1 Accuracy: 5/5 (100.0%)
