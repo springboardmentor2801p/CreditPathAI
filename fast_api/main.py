@@ -224,3 +224,68 @@ def get_random_borrower():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get(
+    "/batch-cases",
+    summary="Get a batch of scored borrowers for dashboard visualization",
+    tags=["Utility"],
+)
+def get_batch_cases(n: int = 15):
+    """
+    Fetches N random borrowers from the database and scores them using the recommendation engine.
+    Used to populate the frontend dashboards with real portfolio data.
+    """
+    import sqlite3
+    import pandas as pd
+    import numpy as np
+    
+    if _state.model is None or _state.preprocessor is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Model is not loaded."
+        )
+
+    db_path = os.path.join(_REPO_ROOT, "csv2database", "creditpathai.db")
+    if not os.path.exists(db_path):
+        raise HTTPException(status_code=404, detail="Database not found")
+        
+    try:
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql(f"SELECT * FROM processed_loans ORDER BY RANDOM() LIMIT {n}", conn)
+        conn.close()
+        
+        if df.empty:
+            raise HTTPException(status_code=404, detail="No loans found in database")
+        
+        results = []
+        for _, row in df.iterrows():
+            row_dict = row.to_dict()
+            # Clean up numpy types
+            for k, v in row_dict.items():
+                if isinstance(v, (np.int64, np.int32)):
+                    row_dict[k] = int(v)
+                elif isinstance(v, (np.float64, np.float32)):
+                    row_dict[k] = float(v)
+            
+            # Score
+            try:
+                rec = recommend(
+                    borrower=row_dict,
+                    model=_state.model,
+                    preprocessor=_state.preprocessor,
+                    feature_names=_state.feature_names,
+                    threshold=0.50
+                )
+                
+                # Add borrower ID
+                rec['id'] = f"BRW-{np.random.randint(1000, 9999)}"
+                rec['loan_amount'] = row_dict.get('loanAmount', 0)
+                results.append(rec)
+            except Exception as e:
+                continue
+                
+        return {"cases": results}
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+

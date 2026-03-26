@@ -1,0 +1,98 @@
+.dashboard-page { max-width: 1300px; }
+
+.health-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.health-ok    { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; }
+.health-warn  { background: rgba(245,158,11,0.1);  border: 1px solid rgba(245,158,11,0.25);  color: #fcd34d; }
+.health-error { background: rgba(239,68,68,0.1);   border: 1px solid rgba(239,68,68,0.25);   color: #fca5a5; }
+
+.health-dot {
+  width: 8px; height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Stat Cards ── */
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: rgba(99,102,241,0.35); }
+
+.stat-card-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.stat-card-value { font-size: 1.6rem; font-weight: 800; line-height: 1; }
+.stat-card-label { font-size: 0.78rem; color: var(--text-secondary); margin-top: 4px; font-weight: 600; }
+.stat-card-sub   { font-size: 0.7rem;  color: var(--text-muted); margin-top: 2px; }
+
+/* ── Charts ── */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) { .chart-row { grid-template-columns: 1fr; } }
+
+.chart-card { padding: 16px; }
+
+/* ── Table ── */
+.table-wrapper { overflow-x: auto; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.data-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+.data-table tbody tr:hover { background: var(--bg-card2); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.prob-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.band-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}

@@ -1,0 +1,219 @@
+:root {
+  --bg-color: #f4f7f6;
+  --text-color: #333333;
+  --primary: #4361ee;
+  --primary-hover: #3f37c9;
+  --header-bg: #1a1a2e;
+  --header-text: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --success: #2ecc71;
+  --danger: #e74c3c;
+  --warning: #f1c40f;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --border-radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  color: #2b2b2b;
+  font-weight: 600;
+}
+
+/* Layout */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation */
+nav {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+nav b {
+  font-size: 1.2rem;
+  margin-right: auto;
+  letter-spacing: 0.5px;
+}
+nav a {
+  color: #cdd6f4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+nav a:hover, nav a.active {
+  color: #ffffff;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.btn:hover {
+  background-color: var(--primary-hover);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  background-color: #a0aab2;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-secondary {
+  background-color: #f1f3f5;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+.btn-secondary:hover {
+  background-color: #e9ecef;
+}
+
+/* Forms */
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #4a4a4a;
+  font-size: 14px;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: border-color 0.2s;
+  background-color: #fafafa;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #fff;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panels / Cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow);
+}
+.card h2, .card h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: white;
+}
+.badge-success { background-color: var(--success); }
+.badge-danger { background-color: var(--danger); }
+.badge-warning { background-color: var(--warning); color: #333; }
+
+/* Result Box */
+.result-box {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+.result-box.approved {
+  border-left: 6px solid var(--success);
+  background-color: #eafaf1;
+  color: #1e8449;
+}
+.result-box.rejected {
+  border-left: 6px solid var(--danger);
+  background-color: #fdedec;
+  color: #922b21;
+}
+.result-box.review {
+  border-left: 6px solid var(--warning);
+  background-color: #fef9e7;
+  color: #9a7d0a;
+}
+.result-box h3 {
+  margin-top: 0;
+  color: inherit;
+}
+
+/* Simple Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 25px 0;
+}
