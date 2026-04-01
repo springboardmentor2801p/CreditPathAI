@@ -1,61 +1,17 @@
 import { useState } from 'react'
 import PlotlyChart from '../components/PlotlyChart'
 import { postRecommend, getRandomBorrower } from '../utils/api'
-
-const DEFAULTS = {
-  isJointApplication: 0,
-  loanAmount: 350000,
-  interestRate: 15.0,
-  monthlyPayment: 9800,
-  term_months: 36,
-  yearsEmployment: 5,
-  annualIncome: 500000,
-  incomeVerified: 1,
-  dtiRatio: 0.35,
-  revolvingBalance: 50000,
-  revolvingUtilizationRate: 0.40,
-  lengthCreditHistory: 6,
-  numTotalCreditLines: 8,
-  numOpenCreditLines: 5,
-  numOpenCreditLines1Year: 1,
-  numDerogatoryRec: 0,
-  numDelinquency2Years: 0,
-  numChargeoff1year: 0,
-  numInquiries6Mon: 1,
-  grade_score: 5,
-  loan_to_income_ratio: 0.70,
-  payment_to_income_ratio: 0.23,
-  repayment_velocity: 0.02,
-  loan_amortization_rate: 0.03,
-  open_credit_ratio: 0.62,
-  recent_credit_velocity: 1,
-  inquiry_intensity: 0.20,
-  delinquency_density: 0.0,
-  derogatory_density: 0.0,
-  estimated_credit_limit: 150000,
-  credit_utilization_recomputed: 0.33,
-  log_loanAmount: 12.76,
-  log_annualIncome: 13.12,
-  log_revolvingBalance: 10.81,
-  purpose_business: 0,
-  purpose_debtconsolidation: 1,
-  purpose_education: 0,
-  purpose_healthcare: 0,
-  purpose_homeimprovement: 0,
-  purpose_other: 0,
-  homeOwnership_own: 0,
-  homeOwnership_rent: 1,
-  threshold: 0.50,
-}
+import { BLANK_FORM, computePayload } from '../utils/defaults'
 
 export default function BorrowerPage() {
-  const [form, setForm] = useState(DEFAULTS)
+  const [form, setForm] = useState(BLANK_FORM)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showAdvanced, setShowAdvanced] = useState(false)
 
   const handleChange = (key, val) => {
-    setForm(prev => ({ ...prev, [key]: Number(val) }))
+    setForm(prev => ({ ...prev, [key]: val === '' ? '' : Number(val) }))
   }
 
   const handleSubmit = async (e) => {
@@ -65,12 +21,7 @@ export default function BorrowerPage() {
     setResult(null)
     
     try {
-      const payload = Object.fromEntries(
-        Object.entries(form).map(([k, v]) => [k, v === '' ? 0 : Number(v)])
-      )
-      ;['term_months', 'yearsEmployment', 'lengthCreditHistory', 'numTotalCreditLines', 'numDelinquency2Years', 'numDerogatoryRec', 'numChargeoff1year', 'numInquiries6Mon'].forEach(f => {
-        if (payload[f] !== undefined) payload[f] = Math.round(payload[f])
-      })
+      const payload = computePayload(form)
       const res = await postRecommend(payload)
       setResult(res)
     } catch (err) {
@@ -88,8 +39,8 @@ export default function BorrowerPage() {
     try {
       const data = await getRandomBorrower()
       setForm(prev => ({ ...prev, ...data }))
-    } catch (e) {
-      console.warn("Could not load random data")
+    } catch (err) {
+      console.warn("Could not load random data", err)
     }
   }
 
@@ -103,8 +54,13 @@ export default function BorrowerPage() {
         <div className="card" style={{ flex: '1', minWidth: '300px' }}>
           <h3>My Details</h3>
           <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            {Object.keys(DEFAULTS).map(key => {
+            {Object.keys(BLANK_FORM).map(key => {
               if (key === 'threshold') return null;
+              const isBasic = ['loanAmount', 'annualIncome', 'monthlyPayment', 'interestRate', 'term_months', 'yearsEmployment'].includes(key);
+              if (!showAdvanced && !isBasic) return null;
+              
+              const dynamicFallback = computePayload(form)[key];
+
               return (
                 <div key={key} style={{ display: 'flex', flexDirection: 'column' }}>
                   <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px', textTransform: 'capitalize' }}>
@@ -114,7 +70,8 @@ export default function BorrowerPage() {
                     type="number"
                     value={form[key]}
                     onChange={e => handleChange(key, e.target.value)}
-                    required
+                    required={isBasic}
+                    placeholder={`e.g. ${dynamicFallback}`}
                     step="any"
                     style={{
                       padding: '8px',
@@ -127,6 +84,17 @@ export default function BorrowerPage() {
                 </div>
               );
             })}
+
+            <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowAdvanced(!showAdvanced)}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+              >
+                {showAdvanced ? 'Hide Advanced Fields ▲' : 'Show Advanced Fields ▼'}
+              </button>
+            </div>
 
             <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '10px', marginTop: '10px' }}>
               <button type="submit" className="btn" disabled={loading} style={{ flex: 1, padding: '12px' }}>
@@ -183,9 +151,9 @@ export default function BorrowerPage() {
                       type: 'pie',
                       labels: ['New Loan EMI', 'Other Debts EMI', 'Disposable Income'],
                       values: [
-                        form.monthlyPayment,
-                        (form.annualIncome / 12) * form.dtiRatio - form.monthlyPayment,
-                        (form.annualIncome / 12) * (1 - form.dtiRatio)
+                        computePayload(form).monthlyPayment,
+                        (computePayload(form).annualIncome / 12) * computePayload(form).dtiRatio - computePayload(form).monthlyPayment,
+                        (computePayload(form).annualIncome / 12) * (1 - computePayload(form).dtiRatio)
                       ].map(v => Math.max(0, v)),
                       hole: 0.5,
                       marker: { colors: ['#f59e0b', '#ef4444', '#10b981'] },
@@ -211,8 +179,8 @@ export default function BorrowerPage() {
                   <p>Our recommendation engine found certain risk factors in your profile. To improve your chances, consider the following:</p>
                   <ul style={{ paddingLeft: '20px', lineHeight: '1.8' }}>
                     {/* Based on common fields */}
-                    {form.loanAmount > form.annualIncome && <li><strong>Decrease Loan Amount:</strong> You requested more than you earn in a year.</li>}
-                    {form.revolvingBalance > 0.4 * form.annualIncome && <li><strong>Pay down debt:</strong> Your specific revolving debt is quite high compared to income.</li>}
+                    {computePayload(form).loanAmount > computePayload(form).annualIncome && <li><strong>Decrease Loan Amount:</strong> You requested more than you earn in a year.</li>}
+                    {computePayload(form).revolvingBalance > 0.4 * computePayload(form).annualIncome && <li><strong>Pay down debt:</strong> Your specific revolving debt is quite high compared to income.</li>}
                     {result.risk_flags && result.risk_flags.map((flag, i) => (
                       <li key={i}>{flag} - This is flagged as a direct factor against your approval.</li>
                     ))}

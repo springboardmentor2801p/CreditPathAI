@@ -14,25 +14,29 @@ export default function LandingPage() {
       <div style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginTop: '30px' }}>
         
         {/* Borrower Option */}
-        <div className="card" style={{ width: '300px', textAlign: 'left' }}>
-          <h2>👤 Person (Borrower)</h2>
-          <p>
-            I want to know if I can take a loan. If not, I want to know what I need to do 
-            (decrease amount, increase salary, pay off debts) to get approved.
-          </p>
-          <br/>
-          <Link to="/borrower" className="btn" style={{ width: '100%' }}>Go to Borrower View</Link>
+        <div className="card" style={{ width: '300px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '30px' }}>
+          <div>
+            <h2 style={{ marginBottom: '15px' }}>👤 Borrower</h2>
+            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+              Check your loan eligibility and get personalized advice.
+            </p>
+          </div>
+          <div style={{ marginTop: '30px' }}>
+            <Link to="/borrower" className="btn" style={{ width: '100%', padding: '12px' }}>Enter as Borrower</Link>
+          </div>
         </div>
         
         {/* Provider Option */}
-        <div className="card" style={{ width: '300px', textAlign: 'left' }}>
-          <h2>🏢 Loan Provider</h2>
-          <p>
-            I want to check a borrower's details to see if the loan can be approved. 
-            View risk metrics, agent insights, default reasons, and recovery methods.
-          </p>
-          <br/>
-          <Link to="/provider" className="btn" style={{ width: '100%' }}>Go to Provider View</Link>
+        <div className="card" style={{ width: '300px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '30px' }}>
+          <div>
+            <h2 style={{ marginBottom: '15px' }}>🏢 Loan Provider</h2>
+            <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+              Evaluate borrower applications and view risk metrics.
+            </p>
+          </div>
+          <div style={{ marginTop: '30px' }}>
+            <Link to="/provider" className="btn" style={{ width: '100%', padding: '12px' }}>Enter as Provider</Link>
+          </div>
         </div>
 
       </div>

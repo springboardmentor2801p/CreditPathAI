@@ -28,8 +28,8 @@ const PLT = (title) => ({
   font:   { family: 'Inter, sans-serif', color: '#94a3b8' },
   margin: { t: 30, b: 40, l: 40, r: 20 },
   title:  { text: title, font: { color: '#f1f5f9', size: 14 }, x: 0.02 },
-  xaxis:  { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.05)' },
-  yaxis:  { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.05)' },
+  xaxis:  { gridcolor: 'rgba(128,128,128,0.2)', zerolinecolor: 'rgba(128,128,128,0.2)' },
+  yaxis:  { gridcolor: 'rgba(128,128,128,0.2)', zerolinecolor: 'rgba(128,128,128,0.2)' },
 })
 
 function StatCard({ icon, label, value, sub, color }) {
@@ -48,7 +48,6 @@ function StatCard({ icon, label, value, sub, color }) {
 export default function Dashboard() {
   const [health,   setHealth]   = useState(null)
   const [apiError, setApiError] = useState(false)
-  const [loading,  setLoading]  = useState(true)
   const [results,  setResults]  = useState(SAMPLE_RESULTS)
 
   useEffect(() => {
@@ -63,7 +62,6 @@ export default function Dashboard() {
         }
       })
       .catch(err => console.warn('Using fallback data:', err))
-      .finally(() => setLoading(false))
   }, [])
 
   const bandCounts = results.reduce((acc, r) => {
@@ -177,8 +175,8 @@ export default function Dashboard() {
             layout={{
               ...PLT('Default Prob. vs Expected Loss'),
               height: 280,
-              xaxis: { gridcolor: 'rgba(255,255,255,0.05)', title: { text: 'Default Prob. (%)', font: { color: '#94a3b8' } } },
-              yaxis: { gridcolor: 'rgba(255,255,255,0.05)', title: { text: 'Expected Loss', font: { color: '#94a3b8' } } },
+              xaxis: { gridcolor: 'rgba(128,128,128,0.2)', title: { text: 'Default Prob. (%)', font: { color: '#94a3b8' } } },
+              yaxis: { gridcolor: 'rgba(128,128,128,0.2)', title: { text: 'Expected Loss', font: { color: '#94a3b8' } } },
             }}
             config={{ displayModeBar: false, responsive: true }}
             style={{ width: '100%' }}
@@ -199,7 +197,7 @@ export default function Dashboard() {
               ...PLT('Expected Loss per Borrower'),
               height: 280,
               margin: { t: 30, b: 40, l: 90, r: 20 },
-              xaxis: { gridcolor: 'rgba(255,255,255,0.05)', tickformat: ',.0f' },
+              xaxis: { gridcolor: 'rgba(128,128,128,0.2)', tickformat: ',.0f' },
             }}
             config={{ displayModeBar: false, responsive: true }}
             style={{ width: '100%' }}

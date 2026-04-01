@@ -1,22 +1,59 @@
 :root {
-  --bg-color: #f4f7f6;
-  --text-color: #333333;
-  --primary: #4361ee;
-  --primary-hover: #3f37c9;
-  --header-bg: #1a1a2e;
-  --header-text: #ffffff;
+  /* 60% Dominant (Backgrounds) */
+  --bg-color: #f8fafc; 
+  /* 30% Secondary (Cards, Navigation, slight contrasts) */
   --card-bg: #ffffff;
-  --border-color: #e0e0e0;
-  --success: #2ecc71;
-  --danger: #e74c3c;
-  --warning: #f1c40f;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --border-radius: 8px;
+  --header-bg: #ffffff; 
+  /* 10% Accent (Buttons, Actions) */
+  --primary: #4f46e5; 
+  --primary-hover: #4338ca;
+  
+  --text-color: #0f172a;
+  --header-text: #0f172a;
+  --border-color: #e2e8f0;
+  
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --border-radius: 12px;
+
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --card-heading: #1e293b;
+  --table-header-bg: #f8fafc;
+  --table-even-bg: #f1f5f9;
+}
+
+body.dark-mode {
+  /* 60% Dominant (Backgrounds) */
+  --bg-color: #0f172a; 
+  /* 30% Secondary (Cards, Navigation) */
+  --card-bg: #1e293b; 
+  --header-bg: #1e293b; 
+  /* 10% Accent (Buttons, Actions) */
+  --primary: #6366f1; 
+  --primary-hover: #818cf8;
+  
+  --text-color: #f1f5f9;
+  --header-text: #f1f5f9;
+  --border-color: #334155;
+  
+  --success: #34d399;
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  
+  --input-bg: #0f172a;
+  --input-text: #f1f5f9;
+  --card-heading: #f8fafc;
+  --table-header-bg: #0b1120;
+  --table-even-bg: #0f172a;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
@@ -25,12 +62,13 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  color: #2b2b2b;
+  color: var(--card-heading);
   font-weight: 600;
 }
 
@@ -49,21 +87,22 @@ nav {
   display: flex;
   align-items: center;
   gap: 25px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--border-color);
 }
 nav b {
   font-size: 1.2rem;
   margin-right: auto;
   letter-spacing: 0.5px;
+  color: var(--primary);
 }
 nav a {
-  color: #cdd6f4;
+  color: var(--text-color);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
 nav a:hover, nav a.active {
-  color: #ffffff;
+  color: var(--primary);
 }
 
 /* Buttons */
@@ -93,12 +132,12 @@ nav a:hover, nav a.active {
   transform: none;
 }
 .btn-secondary {
-  background-color: #f1f3f5;
-  color: #495057;
-  border: 1px solid #ced4da;
+  background-color: var(--table-even-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 .btn-secondary:hover {
-  background-color: #e9ecef;
+  background-color: var(--border-color);
 }
 
 /* Forms */
@@ -106,7 +145,7 @@ label {
   display: block;
   font-weight: 500;
   margin-bottom: 6px;
-  color: #4a4a4a;
+  color: var(--text-color);
   font-size: 14px;
 }
 input, select {
@@ -117,12 +156,13 @@ input, select {
   font-size: 14px;
   margin-bottom: 15px;
   transition: border-color 0.2s;
-  background-color: #fafafa;
+  background-color: var(--input-bg);
+  color: var(--input-text);
 }
 input:focus, select:focus {
   outline: none;
   border-color: var(--primary);
-  background-color: #fff;
+  background-color: var(--input-bg);
 }
 .form-grid {
   display: grid;
@@ -146,9 +186,10 @@ input:focus, select:focus {
 }
 .card h2, .card h3 {
   margin-top: 0;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 10px;
   margin-bottom: 20px;
+  color: var(--card-heading);
 }
 
 /* Badges */
@@ -173,18 +214,18 @@ input:focus, select:focus {
 }
 .result-box.approved {
   border-left: 6px solid var(--success);
-  background-color: #eafaf1;
-  color: #1e8449;
+  background-color: var(--table-even-bg);
+  color: var(--success);
 }
 .result-box.rejected {
   border-left: 6px solid var(--danger);
-  background-color: #fdedec;
-  color: #922b21;
+  background-color: var(--table-even-bg);
+  color: var(--danger);
 }
 .result-box.review {
   border-left: 6px solid var(--warning);
-  background-color: #fef9e7;
-  color: #9a7d0a;
+  background-color: var(--table-even-bg);
+  color: var(--warning);
 }
 .result-box h3 {
   margin-top: 0;
@@ -204,12 +245,12 @@ th, td {
   font-size: 14px;
 }
 th {
-  background-color: #f8f9fa;
+  background-color: var(--table-header-bg);
   font-weight: 600;
-  color: #495057;
+  color: var(--text-color);
 }
 tr:nth-child(even) {
-  background-color: #fcfcfc;
+  background-color: var(--table-even-bg);
 }
 
 hr {

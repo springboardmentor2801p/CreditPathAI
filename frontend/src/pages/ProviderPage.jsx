@@ -2,51 +2,7 @@ import { useState } from 'react'
 import PlotlyChart from '../components/PlotlyChart'
 import { postRecommend, getRandomBorrower } from '../utils/api'
 
-const DEFAULTS = {
-  isJointApplication: 0,
-  loanAmount: 350000,
-  interestRate: 19.5,
-  monthlyPayment: 9800,
-  term_months: 36,
-  yearsEmployment: 2,
-  annualIncome: 480000,
-  incomeVerified: 1,
-  dtiRatio: 0.45,
-  revolvingBalance: 120000,
-  revolvingUtilizationRate: 0.82,
-  lengthCreditHistory: 5,
-  numTotalCreditLines: 8,
-  numOpenCreditLines: 5,
-  numOpenCreditLines1Year: 2,
-  numDerogatoryRec: 1,
-  numDelinquency2Years: 3,
-  numChargeoff1year: 1,
-  numInquiries6Mon: 4,
-  grade_score: 5,
-  loan_to_income_ratio: 0.73,
-  payment_to_income_ratio: 0.245,
-  repayment_velocity: 0.028,
-  loan_amortization_rate: 0.033,
-  open_credit_ratio: 0.625,
-  recent_credit_velocity: 2,
-  inquiry_intensity: 0.67,
-  delinquency_density: 0.6,
-  derogatory_density: 0.2,
-  estimated_credit_limit: 146000,
-  credit_utilization_recomputed: 0.82,
-  log_loanAmount: 12.766,
-  log_annualIncome: 13.082,
-  log_revolvingBalance: 11.695,
-  purpose_business: 0,
-  purpose_debtconsolidation: 1,
-  purpose_education: 0,
-  purpose_healthcare: 0,
-  purpose_homeimprovement: 0,
-  purpose_other: 0,
-  homeOwnership_own: 0,
-  homeOwnership_rent: 1,
-  threshold: 0.50,
-}
+import { BLANK_FORM, computePayload } from '../utils/defaults'
 
 const FIELDS = [
   {
@@ -140,21 +96,22 @@ const FIELDS = [
 ]
 
 export default function ProviderPage() {
-  const [form, setForm] = useState(DEFAULTS)
+  const [form, setForm] = useState(BLANK_FORM)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showAdvanced, setShowAdvanced] = useState(false)
 
   const handleChange = (key, val) => {
-    setForm(prev => ({ ...prev, [key]: Number(val) }))
+    setForm(prev => ({ ...prev, [key]: val === '' ? '' : Number(val) }))
   }
 
   const handleFillRandom = async () => {
     try {
       const data = await getRandomBorrower()
       setForm(prev => ({ ...prev, ...data }))
-    } catch (e) {
-      console.warn('Could not load random borrower.')
+    } catch (err) {
+      console.warn('Could not load random borrower.', err)
     }
   }
 
@@ -164,13 +121,7 @@ export default function ProviderPage() {
     setError(null)
     setResult(null)
     try {
-      const payload = Object.fromEntries(
-        Object.entries(form).map(([k, v]) => [k, v === '' ? 0 : Number(v)])
-      )
-      // Force specific fields to be integers as required by FastAPI schemas
-      ;['term_months', 'yearsEmployment', 'lengthCreditHistory', 'numTotalCreditLines', 'numDelinquency2Years', 'numDerogatoryRec', 'numChargeoff1year', 'numInquiries6Mon'].forEach(f => {
-        if (payload[f] !== undefined) payload[f] = Math.round(payload[f])
-      })
+      const payload = computePayload(form)
       const res = await postRecommend(payload)
       setResult(res)
     } catch (e) {
@@ -199,35 +150,53 @@ export default function ProviderPage() {
           </button>
           
           <form onSubmit={handleSubmit}>
-            {FIELDS.map(section => (
-              <div key={section.section} style={{ marginBottom: '20px' }}>
-                <h4 style={{ borderBottom: '1px solid #ccc', paddingBottom: '5px' }}>{section.section}</h4>
-                <div className="form-grid">
-                  {section.fields.map(f => (
-                    <div key={f.key}>
-                      <label>{f.label}</label>
-                      {f.type === 'select' ? (
-                        <select 
-                          value={form[f.key] !== undefined ? form[f.key] : ''} 
-                          onChange={e => handleChange(f.key, e.target.value)}
-                        >
-                          {f.options.map(opt => (
-                            <option key={opt.v} value={opt.v}>{opt.l}</option>
-                          ))}
-                        </select>
-                      ) : (
-                        <input 
-                          type="number"
-                          step={f.step || 'any'}
-                          value={form[f.key] !== undefined ? form[f.key] : ''} 
-                          onChange={e => handleChange(f.key, e.target.value)} 
-                        />
-                      )}
-                    </div>
-                  ))}
+            {FIELDS.map(section => {
+              const advancedSections = ['Credit History', 'Revolving Credit', 'Derived Features', 'Log-Transformed Features', 'Loan Purpose', 'Home Ownership'];
+              if (!showAdvanced && advancedSections.includes(section.section)) return null;
+
+              return (
+                <div key={section.section} style={{ marginBottom: '20px' }}>
+                  <h4 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '5px' }}>{section.section}</h4>
+                  <div className="form-grid">
+                    {section.fields.map(f => (
+                      <div key={f.key}>
+                        <label>{f.label}</label>
+                        {f.type === 'select' ? (
+                          <select 
+                            value={form[f.key] !== undefined ? form[f.key] : ''} 
+                            onChange={e => handleChange(f.key, e.target.value)}
+                          >
+                            <option value="" disabled>Default {computePayload(form)[f.key] === 1 ? 'Yes' : 'No'}...</option>
+                            {f.options.map(opt => (
+                              <option key={opt.v} value={opt.v}>{opt.l}</option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input 
+                            type="number"
+                            step={f.step || 'any'}
+                            placeholder={`e.g. ${computePayload(form)[f.key]}`}
+                            value={form[f.key] !== undefined ? form[f.key] : ''} 
+                            onChange={e => handleChange(f.key, e.target.value)} 
+                          />
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setShowAdvanced(!showAdvanced)}
+                style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text-secondary)', padding: '8px 16px' }}
+              >
+                {showAdvanced ? 'Hide Advanced Sections ▲' : 'Show Advanced Sections ▼'}
+              </button>
+            </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <button type="submit" className="btn" disabled={loading} style={{ width: '100%' }}>
               {loading ? 'Evaluating...' : 'Run Credit Check'}

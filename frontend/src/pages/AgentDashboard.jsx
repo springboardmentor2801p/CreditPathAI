@@ -115,14 +115,13 @@ const PLT_LAYOUT = {
   plot_bgcolor:  'transparent',
   font: { family: 'Inter, sans-serif', color: '#94a3b8' },
   margin: { t: 30, b: 40, l: 50, r: 20 },
-  xaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.05)' },
-  yaxis: { gridcolor: 'rgba(255,255,255,0.05)', zerolinecolor: 'rgba(255,255,255,0.05)' },
+  xaxis: { gridcolor: 'rgba(128,128,128,0.2)', zerolinecolor: 'rgba(128,128,128,0.2)' },
+  yaxis: { gridcolor: 'rgba(128,128,128,0.2)', zerolinecolor: 'rgba(128,128,128,0.2)' },
 }
 
 export default function AgentDashboard() {
   const [selected, setSelected] = useState(null)
   const [results, setResults]   = useState(AGENT_CASES)
-  const [loading, setLoading]   = useState(true)
 
   useEffect(() => {
     getBatchCases(8) // Get fewer cases for the agent drill-down page
@@ -134,7 +133,6 @@ export default function AgentDashboard() {
         }
       })
       .catch(err => console.warn('Using fallback data:', err))
-      .finally(() => setLoading(false))
   }, [])
 
   const totalEl  = results.reduce((s, c) => s + c.expected_loss, 0)

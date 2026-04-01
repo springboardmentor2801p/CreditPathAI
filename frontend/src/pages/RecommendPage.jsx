@@ -3,51 +3,7 @@ import PlotlyChart from '../components/PlotlyChart'
 import { postRecommend, getRandomBorrower } from '../utils/api'
 import './RecommendPage.css'
 
-const DEFAULTS = {
-  isJointApplication: 0,
-  loanAmount: 350000,
-  interestRate: 19.5,
-  monthlyPayment: 9800,
-  term_months: 36,
-  yearsEmployment: 2,
-  annualIncome: 480000,
-  incomeVerified: 1,
-  dtiRatio: 0.45,
-  revolvingBalance: 120000,
-  revolvingUtilizationRate: 0.82,
-  lengthCreditHistory: 5,
-  numTotalCreditLines: 8,
-  numOpenCreditLines: 5,
-  numOpenCreditLines1Year: 2,
-  numDerogatoryRec: 1,
-  numDelinquency2Years: 3,
-  numChargeoff1year: 1,
-  numInquiries6Mon: 4,
-  grade_score: 5,
-  loan_to_income_ratio: 0.73,
-  payment_to_income_ratio: 0.245,
-  repayment_velocity: 0.028,
-  loan_amortization_rate: 0.033,
-  open_credit_ratio: 0.625,
-  recent_credit_velocity: 2,
-  inquiry_intensity: 0.67,
-  delinquency_density: 0.6,
-  derogatory_density: 0.2,
-  estimated_credit_limit: 146000,
-  credit_utilization_recomputed: 0.82,
-  log_loanAmount: 12.766,
-  log_annualIncome: 13.082,
-  log_revolvingBalance: 11.695,
-  purpose_business: 0,
-  purpose_debtconsolidation: 1,
-  purpose_education: 0,
-  purpose_healthcare: 0,
-  purpose_homeimprovement: 0,
-  purpose_other: 0,
-  homeOwnership_own: 0,
-  homeOwnership_rent: 1,
-  threshold: 0.50,
-}
+import { BLANK_FORM, computePayload } from '../utils/defaults'
 
 const RISK_COLOR = {
   'Very Low':  '#10b981',
@@ -66,7 +22,6 @@ function VerdictBanner({ result }) {
   const isHigh  = prob >= 0.65
   const isMed   = prob >= 0.35
   const cls     = isHigh ? 'verdict-reject' : isMed ? 'verdict-caution' : 'verdict-approve'
-  const icon    = isHigh ? 'REJECT' : isMed ? 'CAUTION' : 'APPROVE'
   const emoji   = isHigh ? '⛔' : isMed ? '⚠️' : '✅'
   const verdict = isHigh ? 'REJECT — HIGH DEFAULT RISK' : isMed ? 'CAUTION — REVIEW REQUIRED' : 'APPROVE — LOW DEFAULT RISK'
   const color   = getRiskColor(result.risk_band)
@@ -281,7 +236,7 @@ const FIELDS = [
 ]
 
 export default function RecommendPage() {
-  const [form,    setForm]    = useState(DEFAULTS)
+  const [form,    setForm]    = useState(BLANK_FORM)
   const [result,  setResult]  = useState(null)
   const [loading, setLoading] = useState(false)
   const [error,   setError]   = useState(null)
@@ -292,7 +247,7 @@ export default function RecommendPage() {
   }
 
   const handleSelectChange = (key, val) => {
-    setForm(prev => ({ ...prev, [key]: Number(val) }))
+    setForm(prev => ({ ...prev, [key]: val === '' ? '' : Number(val) }))
   }
 
   const handleFillRandom = async () => {
@@ -302,10 +257,11 @@ export default function RecommendPage() {
       const data = await getRandomBorrower()
       setForm(prev => ({
         ...prev,
-        ...Object.fromEntries(Object.entries(data).filter(([k]) => k in DEFAULTS)),
+        ...Object.fromEntries(Object.entries(data).filter(([k]) => k in BLANK_FORM)),
       }))
-    } catch (e) {
+    } catch (err) {
       setError('Could not load random borrower. Is FastAPI running?')
+      console.warn(err)
     } finally {
       setFilling(false)
     }
@@ -317,16 +273,15 @@ export default function RecommendPage() {
     setError(null)
     setResult(null)
     try {
-      const payload = Object.fromEntries(
-        Object.entries(form).map(([k, v]) => [k, v === '' ? 0 : Number(v)])
-      )
+      const payload = computePayload(form)
       const res = await postRecommend(payload)
       setResult(res)
       setTimeout(() => {
         document.getElementById('result-section')?.scrollIntoView({ behavior: 'smooth' })
       }, 100)
-    } catch (e) {
+    } catch (err) {
       setError(e.message || 'Prediction failed. Ensure FastAPI is running on port 8000.')
+      console.warn(err)
     } finally {
       setLoading(false)
     }
@@ -384,6 +339,7 @@ export default function RecommendPage() {
                           max={f.max}
                           step={f.step || 'any'}
                           onChange={e => handleChange(f.key, e.target.value)}
+                          placeholder={`e.g. ${computePayload(form)[f.key]}`}
                         />
                       )}
                     </div>
@@ -505,8 +461,8 @@ export default function RecommendPage() {
                         plot_bgcolor:  'transparent',
                         font: { family: 'Inter, sans-serif', color: '#94a3b8' },
                         polar: {
-                          radialaxis: { visible: true, range: [0, 100], color: '#475569', gridcolor: 'rgba(255,255,255,0.05)' },
-                          angularaxis: { color: '#94a3b8', gridcolor: 'rgba(255,255,255,0.1)' },
+                          radialaxis: { visible: true, range: [0, 100], color: '#475569', gridcolor: 'rgba(128,128,128,0.2)' },
+                          angularaxis: { color: '#94a3b8', gridcolor: 'rgba(128,128,128,0.3)' },
                           bgcolor: 'transparent'
                         },
                         title: { text: 'Risk Factors Benchmark', font: { color: '#f1f5f9', size: 14 } },
