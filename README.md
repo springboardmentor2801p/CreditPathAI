@@ -80,5 +80,3 @@ Steps completed:
 * Achieved better AUC-ROC scores with advanced models.
 
 These models provide improved predictions for identifying high-risk borrowers and help recommend better recovery strategies.
-
-
