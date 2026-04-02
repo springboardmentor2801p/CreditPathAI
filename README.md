@@ -1,82 +1,82 @@
+# CreditPathAI
 
-# Loan Dataset — Initial Data Preprocessing
-
-## Overview
-This repository contains the initial preprocessing workflow for a loan dataset.
-The goal of this stage is to clean and transform raw data into a structured
-format that can be used for Exploratory Data Analysis (EDA) and machine learning.
-
-This is the data preparation phase of a larger Loan Default Prediction project.
+CreditPathAI is a project that analyzes credit-related data to help understand customer financial behavior and support future credit risk prediction.
 
 ---
 
-## Preprocessing Steps
+## Milestone 1 – Project Setup & Baseline Model
 
-### 1. Data Loading
-- Load dataset using Pandas
-- Inspect dataset shape
+Objective:  
+Set up the project structure and create a baseline machine learning model.
 
-### 2. Duplicate Handling
-- Identify duplicate rows
-- Remove duplicate records
+**Tasks Completed:**
+- Created project repository and folder structure.
+- Loaded dataset for credit analysis.
+- Performed initial preprocessing.
+- Built a baseline model for credit prediction.
 
-### 3. Column Cleaning
-Remove unnecessary identifier columns when present:
-- id
-- customer_id
-- name
-
-### 4. Missing Value Treatment
-- Numeric columns → Median imputation
-- Categorical columns → Mode imputation
-
-### 5. Outlier Treatment
-Outliers are treated using the IQR method.
-
-Lower Bound = Q1 − 1.5 × IQR  
-Upper Bound = Q3 + 1.5 × IQR  
-
-Values outside the range are capped.
-
-### 6. Feature Engineering
-The following features are created when columns exist:
-- Loan-Income Ratio
-- EMI-Income Ratio
-
-### 7. Encoding
-- One-Hot Encoding applied to categorical columns
-- Boolean values converted to integers
-
----
-
-## Output
-The preprocessing step generates:
-
-Preprocessed_Loan_Dataset.csv
-
-This dataset will be used in later stages:
-- Exploratory Data Analysis (EDA)
-- Feature selection
-- Machine learning model training
-
----
-
-## Technologies Used
+**Tools Used**:
 - Python
 - Pandas
-- NumPy
 - Scikit-learn
-- Google Colab
 
 ---
 
-## How to Run
-1. Open the notebook in Google Colab
-2. Upload the dataset CSV file
-3. Run all preprocessing cells
-4. Download the processed dataset
+## Milestone 2 – Data Ingestion & Exploratory Data Analysis
+
+Objective:  
+Build a data ingestion pipeline and perform exploratory data analysis (EDA).
+
+**Tasks Completed:**
+- Imported multiple CSV datasets.
+- Created a data ingestion pipeline using Python.
+- Stored data in a SQLite database.
+- Performed basic EDA and data cleaning.
+- Generated cleaned training dataset for further modeling.
+
+**Tools Used:**
+- Python
+- Pandas
+- SQLite
 
 ---
 
-## Author
-Yamini
+## Project Structure
+CreditPathAI/
+│
+├── Data/
+│ ├── cleaned_training_data.csv
+│ ├── creditpathai.db
+│ ├── data_01.csv
+│ ├── data_02.csv
+│ └── data_for_training.csv
+│
+├── src/
+│ ├── ingestion.py
+│ ├── preprocessing.py
+│ └── kpi_analysis.py
+## Milestone 3 – Baseline Model Development
+
+In this milestone, a baseline machine learning model was developed to predict borrower default risk.
+
+Steps completed:
+
+* Performed feature engineering on the cleaned dataset.
+* Split the data into training and testing sets.
+* Implemented a Logistic Regression model using Python and scikit-learn.
+* Evaluated the model performance using AUC-ROC.
+
+This baseline model helps understand the initial predictive performance of the system.
+
+## Milestone 4 – Advanced Model Training
+
+In this milestone, advanced machine learning models were implemented to improve prediction accuracy.
+
+Steps completed:
+
+* Implemented XGBoost and LightGBM models.
+* Performed hyperparameter tuning to improve model performance.
+* Compared the results with the baseline Logistic Regression model.
+* Achieved better AUC-ROC scores with advanced models.
+
+These models provide improved predictions for identifying high-risk borrowers and help recommend better recovery strategies.
