@@ -1,0 +1,41 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints and temporary files
+.ipynb_checkpoints/
+Untitled.ipynb
+*.nbconvert.ipynb
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment and Large Data
+.env
+venv/
+env/
+*.csv
+*.db
+*.sqlite3
+!model_features.csv
+!model_info.txt
+
+# Model artifacts
+*.pkl
+!best_model_m4.pkl
+!lr_baseline.pkl
+
+# Frontend dependencies and builds
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+
+# OS generated files
+.DS_Store
+Thumbs.db
