@@ -33,24 +33,36 @@ It analyzes financial inputs and provides risk predictions, recommendations, and
 
 ## 📂 Project Structure
 
-
 CreditPathAI/
 │
-├── backend/
-│ ├── main.py
-│ ├── requirements.txt
+├── data/
+│   ├── loan_data_sample.csv
+│   ├── loan_data_processed.csv
 │
-├── frontend/
-│ ├── src/
-│ ├── package.json
+├── notebooks/   (Google Colab work - milestones)
+│   ├── 1_data_processing.ipynb        (CSV_to_SQLite.ipynb)
+│   ├── 2_baseline_model.ipynb
+│   ├── 3_advanced_model.ipynb
+│   ├── 4_user_recommendation.ipynb
+│   ├── 5_bank_recommendation.ipynb
+│   ├── 6_user_charts.ipynb
+│   ├── 7_bank_charts.ipynb
+│   ├── 8_fastapi_logic.ipynb
 │
-├── notebooks/
-│ ├── user_model.ipynb
-│ ├── bank_model.ipynb
+├── models/
+│   ├── credit_risk_model_lgbm.pkl
+│
+├── backend/   (VS Code FastAPI)
+│   ├── main.py
+│   ├── requirements.txt
+│
+├── frontend/  (React)
+│   ├── src/
+│   ├── package.json
 │
 ├── docs/
-│ ├── report.pdf
-│ ├── presentation.pptx
+│   ├── report.pdf
+│   ├── website.pdf
 │
 └── README.md
 
