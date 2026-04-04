@@ -1,0 +1,20 @@
+2026-04-02 13:51:26,807 - INFO - Loading engineered data...
+2026-04-02 13:51:29,439 - INFO - Loading model comparison metrics...
+2026-04-02 13:51:29,456 - INFO -   LogisticRegression: ROC-AUC = 0.7241
+2026-04-02 13:51:29,457 - INFO -   XGBoost: ROC-AUC = 0.8906
+2026-04-02 13:51:29,457 - INFO -   LightGBM: ROC-AUC = 0.8903
+2026-04-02 13:51:29,555 - INFO - Best model saved to: data/models/best_model.pkl
+2026-04-02 13:51:29,557 - INFO - Computing SHAP values for XGBoost...
+2026-04-02 13:51:42,684 - INFO - Saved: data/reports/shap/xgboost_shap_bar.png
+2026-04-02 13:51:48,113 - INFO - Saved: data/reports/shap/xgboost_shap_beeswarm.png
+2026-04-02 13:51:48,115 - INFO - Generating waterfall plots for 3 sample predictions...
+2026-04-02 13:51:48,918 - INFO - Saved: data/reports/shap/xgboost_waterfall_sample1.png
+2026-04-02 13:51:49,531 - INFO - Saved: data/reports/shap/xgboost_waterfall_sample2.png
+2026-04-02 13:51:50,167 - INFO - Saved: data/reports/shap/xgboost_waterfall_sample3.png
+2026-04-02 13:51:50,170 - INFO - SHAP plots saved to: data/reports/shap/
+2026-04-02 13:51:50,170 - INFO - Files generated:
+2026-04-02 13:51:50,171 - INFO -   - xgboost_shap_bar.png
+2026-04-02 13:51:50,171 - INFO -   - xgboost_shap_beeswarm.png
+2026-04-02 13:51:50,171 - INFO -   - xgboost_waterfall_sample1.png
+2026-04-02 13:51:50,171 - INFO -   - xgboost_waterfall_sample2.png
+2026-04-02 13:51:50,172 - INFO -   - xgboost_waterfall_sample3.png

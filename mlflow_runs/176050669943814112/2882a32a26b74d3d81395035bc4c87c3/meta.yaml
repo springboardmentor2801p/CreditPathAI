@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/2882a32a26b74d3d81395035bc4c87c3/artifacts
+end_time: 1775117150350
+entry_point_name: ''
+experiment_id: '176050669943814112'
+lifecycle_stage: active
+run_id: 2882a32a26b74d3d81395035bc4c87c3
+run_name: LightGBM
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775117117197
+status: 3
+tags: []
+user_id: syami

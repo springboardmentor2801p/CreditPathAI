@@ -1,0 +1,56 @@
+2026-04-02 13:12:13,811 — INFO — Loading cleaned data from: data/processed/cleaned_loan_data.csv
+2026-04-02 13:12:14,139 — INFO — Shape: 148,670 rows x 34 columns
+2026-04-02 13:12:14,139 — INFO — Connecting to SQLite: data/sqlite/creditpath.db
+2026-04-02 13:12:14,305 — INFO — Writing to table: 'loan_data'...
+2026-04-02 13:12:17,823 — INFO — Running DB verification...
+2026-04-02 13:12:17,850 — INFO — Sample rows:
+      id  year  loan_limit  ...  security_type  status  dtir1
+0  24890  2019           0  ...              1       1   45.0
+1  24891  2019           0  ...              1       1   39.0
+2  24892  2019           0  ...              1       0   46.0
+3  24893  2019           0  ...              1       0   42.0
+4  24894  2019           0  ...              1       0   39.0
+
+[5 rows x 34 columns]
+2026-04-02 13:12:41,661 — INFO — Loading cleaned data from: data/processed/cleaned_loan_data.csv
+2026-04-02 13:12:41,976 — INFO — Shape: 148,670 rows x 34 columns
+2026-04-02 13:12:41,976 — INFO — Connecting to SQLite: data/sqlite/creditpath.db
+2026-04-02 13:12:42,001 — INFO — Writing to table: 'loan_data'...
+2026-04-02 13:12:44,710 — INFO — Running DB verification...
+2026-04-02 13:12:44,732 — INFO — Sample rows:
+      id  year  loan_limit  ...  security_type  status  dtir1
+0  24890  2019           0  ...              1       1   45.0
+1  24891  2019           0  ...              1       1   39.0
+2  24892  2019           0  ...              1       0   46.0
+3  24893  2019           0  ...              1       0   42.0
+4  24894  2019           0  ...              1       0   39.0
+
+[5 rows x 34 columns]
+2026-04-02 13:38:23,828 — INFO — Loading cleaned data from: data/processed/cleaned_loan_data.csv
+2026-04-02 13:38:24,324 — INFO — Shape: 148,670 rows x 34 columns
+2026-04-02 13:38:24,325 — INFO — Connecting to SQLite: data/sqlite/creditpath.db
+2026-04-02 13:38:24,354 — INFO — Writing to table: 'loan_data'...
+2026-04-02 13:38:28,859 — INFO — Running DB verification...
+2026-04-02 13:38:28,896 — INFO — Sample rows:
+      id  year  loan_limit  ...  security_type  status  dtir1
+0  24890  2019           0  ...              1       1   45.0
+1  24891  2019           0  ...              1       1   39.0
+2  24892  2019           0  ...              1       0   46.0
+3  24893  2019           0  ...              1       0   42.0
+4  24894  2019           0  ...              1       0   39.0
+
+[5 rows x 34 columns]
+2026-04-02 13:42:54,132 — INFO — Loading cleaned data from: data/processed/cleaned_loan_data.csv
+2026-04-02 13:42:54,487 — INFO — Shape: 148,670 rows x 31 columns
+2026-04-02 13:42:54,487 — INFO — Connecting to SQLite: data/sqlite/creditpath.db
+2026-04-02 13:42:54,517 — INFO — Writing to table: 'loan_data'...
+2026-04-02 13:42:58,196 — INFO — Running DB verification...
+2026-04-02 13:42:58,229 — INFO — Sample rows:
+      id  year  loan_limit  ...  security_type  status  dtir1
+0  24890  2019           0  ...              1       1   45.0
+1  24891  2019           0  ...              1       1   39.0
+2  24892  2019           0  ...              1       0   46.0
+3  24893  2019           0  ...              1       0   42.0
+4  24894  2019           0  ...              1       0   39.0
+
+[5 rows x 31 columns]

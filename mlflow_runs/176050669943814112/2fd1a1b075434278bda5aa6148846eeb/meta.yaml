@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/2fd1a1b075434278bda5aa6148846eeb/artifacts
+end_time: 1775117542167
+entry_point_name: ''
+experiment_id: '176050669943814112'
+lifecycle_stage: active
+run_id: 2fd1a1b075434278bda5aa6148846eeb
+run_name: XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775117518735
+status: 3
+tags: []
+user_id: syami

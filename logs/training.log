@@ -1,0 +1,126 @@
+2026-04-02 13:14:22,926 - INFO - Loading engineered data from SQLite...
+2026-04-02 13:14:25,977 - INFO - Loaded 148,670 rows x 40 columns
+2026-04-02 13:14:25,978 - INFO - Preparing features and target...
+2026-04-02 13:14:26,013 - INFO - Features: 37 | Target distribution:
+2026-04-02 13:14:26,015 - INFO -   No Default (0): 112,031 (75.4%)
+2026-04-02 13:14:26,017 - INFO -   Default    (1): 36,639 (24.6%)
+2026-04-02 13:14:26,020 - INFO - Splitting data: 80% train / 20% test
+2026-04-02 13:14:26,157 - INFO - Train size: 118,936 | Test size: 29,734
+2026-04-02 13:14:26,157 - INFO - Applying SMOTE to handle class imbalance...
+2026-04-02 13:14:30,240 - INFO - After SMOTE - Train size: 179,250
+2026-04-02 13:14:30,242 - INFO -   No Default (0): 89,625
+2026-04-02 13:14:30,244 - INFO -   Default    (1): 89,625
+2026-04-02 13:14:30,641 - INFO - Training Logistic Regression...
+2026-04-02 13:14:30,641 - INFO - Running 5-fold cross validation...
+2026-04-02 13:14:35,181 - INFO - CV ROC-AUC: 0.8305 +/- 0.0025
+2026-04-02 13:14:36,152 - INFO - Model Evaluation Results:
+2026-04-02 13:14:36,152 - INFO -   accuracy: 0.7438
+2026-04-02 13:14:36,153 - INFO -   precision: 0.4845
+2026-04-02 13:14:36,153 - INFO -   recall: 0.6168
+2026-04-02 13:14:36,153 - INFO -   f1_score: 0.5427
+2026-04-02 13:14:36,154 - INFO -   roc_auc: 0.7586
+2026-04-02 13:14:36,154 - INFO - 
+Classification Report:
+2026-04-02 13:14:36,178 - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.86      0.79      0.82     22406
+           1       0.48      0.62      0.54      7328
+
+    accuracy                           0.74     29734
+   macro avg       0.67      0.70      0.68     29734
+weighted avg       0.77      0.74      0.75     29734
+
+2026-04-02 13:14:36,178 - INFO - Confusion Matrix:
+2026-04-02 13:14:36,185 - INFO - 
+[[17597  4809]
+ [ 2808  4520]]
+2026-04-02 13:14:43,986 - INFO - Model saved to: data/models/logistic_regression.pkl
+2026-04-02 13:14:43,988 - INFO - Metrics saved to: data/reports/logistic_regression_metrics.json
+2026-04-02 13:14:43,988 - INFO - MLflow run complete!
+2026-04-02 13:14:43,993 - INFO - Baseline model training complete!
+2026-04-02 13:14:43,994 - INFO - Final ROC-AUC: 0.7586
+2026-04-02 13:38:45,477 - INFO - Loading engineered data from SQLite...
+2026-04-02 13:38:48,327 - INFO - Loaded 148,670 rows x 40 columns
+2026-04-02 13:38:48,328 - INFO - Preparing features and target...
+2026-04-02 13:38:48,362 - INFO - Features: 37 | Target distribution:
+2026-04-02 13:38:48,364 - INFO -   No Default (0): 112,031 (75.4%)
+2026-04-02 13:38:48,365 - INFO -   Default    (1): 36,639 (24.6%)
+2026-04-02 13:38:48,367 - INFO - Splitting data: 80% train / 20% test
+2026-04-02 13:38:48,479 - INFO - Train size: 118,936 | Test size: 29,734
+2026-04-02 13:38:48,479 - INFO - Applying SMOTE to handle class imbalance...
+2026-04-02 13:38:51,561 - INFO - After SMOTE - Train size: 179,250
+2026-04-02 13:38:51,562 - INFO -   No Default (0): 89,625
+2026-04-02 13:38:51,563 - INFO -   Default    (1): 89,625
+2026-04-02 13:38:51,894 - INFO - Training Logistic Regression...
+2026-04-02 13:38:51,895 - INFO - Running 5-fold cross validation...
+2026-04-02 13:38:55,441 - INFO - CV ROC-AUC: 0.8305 +/- 0.0025
+2026-04-02 13:38:56,234 - INFO - Model Evaluation Results:
+2026-04-02 13:38:56,235 - INFO -   accuracy: 0.7438
+2026-04-02 13:38:56,235 - INFO -   precision: 0.4845
+2026-04-02 13:38:56,236 - INFO -   recall: 0.6168
+2026-04-02 13:38:56,236 - INFO -   f1_score: 0.5427
+2026-04-02 13:38:56,236 - INFO -   roc_auc: 0.7586
+2026-04-02 13:38:56,236 - INFO - 
+Classification Report:
+2026-04-02 13:38:56,255 - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.86      0.79      0.82     22406
+           1       0.48      0.62      0.54      7328
+
+    accuracy                           0.74     29734
+   macro avg       0.67      0.70      0.68     29734
+weighted avg       0.77      0.74      0.75     29734
+
+2026-04-02 13:38:56,256 - INFO - Confusion Matrix:
+2026-04-02 13:38:56,259 - INFO - 
+[[17597  4809]
+ [ 2808  4520]]
+2026-04-02 13:39:03,320 - INFO - Model saved to: data/models/logistic_regression.pkl
+2026-04-02 13:39:03,322 - INFO - Metrics saved to: data/reports/logistic_regression_metrics.json
+2026-04-02 13:39:03,323 - INFO - MLflow run complete!
+2026-04-02 13:39:03,327 - INFO - Baseline model training complete!
+2026-04-02 13:39:03,327 - INFO - Final ROC-AUC: 0.7586
+2026-04-02 13:43:13,089 - INFO - Loading engineered data from SQLite...
+2026-04-02 13:43:15,868 - INFO - Loaded 148,670 rows x 36 columns
+2026-04-02 13:43:15,869 - INFO - Preparing features and target...
+2026-04-02 13:43:15,903 - INFO - Features: 33 | Target distribution:
+2026-04-02 13:43:15,905 - INFO -   No Default (0): 112,031 (75.4%)
+2026-04-02 13:43:15,907 - INFO -   Default    (1): 36,639 (24.6%)
+2026-04-02 13:43:15,909 - INFO - Splitting data: 80% train / 20% test
+2026-04-02 13:43:16,011 - INFO - Train size: 118,936 | Test size: 29,734
+2026-04-02 13:43:16,012 - INFO - Applying SMOTE to handle class imbalance...
+2026-04-02 13:43:19,048 - INFO - After SMOTE - Train size: 179,250
+2026-04-02 13:43:19,050 - INFO -   No Default (0): 89,625
+2026-04-02 13:43:19,051 - INFO -   Default    (1): 89,625
+2026-04-02 13:43:19,415 - INFO - Training Logistic Regression...
+2026-04-02 13:43:19,416 - INFO - Running 5-fold cross validation...
+2026-04-02 13:43:22,165 - INFO - CV ROC-AUC: 0.8122 +/- 0.0019
+2026-04-02 13:43:22,827 - INFO - Model Evaluation Results:
+2026-04-02 13:43:22,829 - INFO -   accuracy: 0.7253
+2026-04-02 13:43:22,829 - INFO -   precision: 0.4551
+2026-04-02 13:43:22,830 - INFO -   recall: 0.5802
+2026-04-02 13:43:22,831 - INFO -   f1_score: 0.5101
+2026-04-02 13:43:22,832 - INFO -   roc_auc: 0.7241
+2026-04-02 13:43:22,832 - INFO - 
+Classification Report:
+2026-04-02 13:43:22,851 - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.85      0.77      0.81     22406
+           1       0.46      0.58      0.51      7328
+
+    accuracy                           0.73     29734
+   macro avg       0.65      0.68      0.66     29734
+weighted avg       0.75      0.73      0.74     29734
+
+2026-04-02 13:43:22,851 - INFO - Confusion Matrix:
+2026-04-02 13:43:22,856 - INFO - 
+[[17315  5091]
+ [ 3076  4252]]
+2026-04-02 13:43:30,920 - INFO - Model saved to: data/models/logistic_regression.pkl
+2026-04-02 13:43:30,923 - INFO - Metrics saved to: data/reports/logistic_regression_metrics.json
+2026-04-02 13:43:30,924 - INFO - MLflow run complete!
+2026-04-02 13:43:30,929 - INFO - Baseline model training complete!
+2026-04-02 13:43:30,931 - INFO - Final ROC-AUC: 0.7241

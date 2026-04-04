@@ -1,0 +1,30 @@
+# Data Processing
+pandas==2.1.4
+numpy==1.26.4
+openpyxl==3.1.2
+
+# Database
+sqlalchemy==2.0.27
+
+# ML & MLOps
+scikit-learn==1.4.1
+xgboost==2.0.3
+lightgbm==4.3.0
+mlflow==2.11.1
+imbalanced-learn==0.12.0
+shap==0.44.1
+
+# API
+fastapi==0.110.0
+uvicorn==0.27.1
+pydantic==2.6.1
+
+# Visualization
+plotly==5.19.0
+matplotlib==3.8.3
+seaborn==0.13.2
+
+# Utilities
+python-dotenv==1.0.1
+pytest==8.0.2
+httpx==0.27.0

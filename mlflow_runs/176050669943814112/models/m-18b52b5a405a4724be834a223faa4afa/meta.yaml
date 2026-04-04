@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/models/m-18b52b5a405a4724be834a223faa4afa/artifacts
+creation_timestamp: 1775117603094
+experiment_id: '176050669943814112'
+last_updated_timestamp: 1775117610883
+model_id: m-18b52b5a405a4724be834a223faa4afa
+model_type: null
+name: logistic_regression_model
+source_run_id: ebbd76a546eb4882afa581ff7d751986
+status: 2
+status_message: null

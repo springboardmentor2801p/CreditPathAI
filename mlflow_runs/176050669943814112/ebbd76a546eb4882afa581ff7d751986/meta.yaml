@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/ebbd76a546eb4882afa581ff7d751986/artifacts
+end_time: 1775117610926
+entry_point_name: ''
+experiment_id: '176050669943814112'
+lifecycle_stage: active
+run_id: ebbd76a546eb4882afa581ff7d751986
+run_name: LogisticRegression_Baseline
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775117599323
+status: 3
+tags: []
+user_id: syami

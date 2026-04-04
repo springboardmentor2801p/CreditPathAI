@@ -1,0 +1,43 @@
+2026-04-02 13:46:13,595 - INFO - Loading data from SQLite...
+2026-04-02 13:46:16,336 - INFO - Loaded 148,670 rows x 36 columns
+2026-04-02 13:46:16,336 - INFO - Generating EDA report...
+2026-04-02 13:46:16,667 - INFO - Saved summary stats to: data/reports/eda/summary_statistics.csv
+2026-04-02 13:46:16,668 - INFO - 
+DATASET OVERVIEW:
+2026-04-02 13:46:16,668 - INFO -   Total Records  : 148,670
+2026-04-02 13:46:16,669 - INFO -   Total Features : 36
+2026-04-02 13:46:16,670 - INFO -   Default Rate   : 24.6%
+2026-04-02 13:46:16,680 - INFO -   Missing Values : 0
+2026-04-02 13:46:18,989 - INFO - Saved: data/reports/eda/01_target_distribution.png
+2026-04-02 13:46:22,998 - INFO - Saved: data/reports/eda/02_numeric_distributions.png
+2026-04-02 13:46:23,210 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,211 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,221 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,222 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,232 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,234 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,246 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,248 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,274 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,288 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,306 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,309 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,326 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,327 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,342 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:23,344 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:24,546 - INFO - Saved: data/reports/eda/03_categorical_default_rates.png
+2026-04-02 13:46:28,590 - INFO - Saved: data/reports/eda/04_correlation_heatmap.png
+2026-04-02 13:46:28,989 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:28,990 - INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2026-04-02 13:46:30,793 - INFO - Saved: data/reports/eda/05_risk_analysis.png
+2026-04-02 13:46:31,643 - INFO - Saved: data/reports/eda/06_missing_values.png
+2026-04-02 13:46:31,644 - INFO - EDA complete! All charts saved to: data/reports/eda/
+2026-04-02 13:46:31,645 - INFO - Files generated:
+2026-04-02 13:46:31,646 - INFO -   - 01_target_distribution.png
+2026-04-02 13:46:31,646 - INFO -   - 02_numeric_distributions.png
+2026-04-02 13:46:31,646 - INFO -   - 03_categorical_default_rates.png
+2026-04-02 13:46:31,647 - INFO -   - 04_correlation_heatmap.png
+2026-04-02 13:46:31,647 - INFO -   - 05_risk_analysis.png
+2026-04-02 13:46:31,648 - INFO -   - 06_missing_values.png
+2026-04-02 13:46:31,648 - INFO -   - summary_statistics.csv

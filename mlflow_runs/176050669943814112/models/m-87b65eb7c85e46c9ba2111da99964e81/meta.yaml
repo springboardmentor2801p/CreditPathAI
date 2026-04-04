@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/models/m-87b65eb7c85e46c9ba2111da99964e81/artifacts
+creation_timestamp: 1775117535074
+experiment_id: '176050669943814112'
+last_updated_timestamp: 1775117542122
+model_id: m-87b65eb7c85e46c9ba2111da99964e81
+model_type: null
+name: xgboost_model
+source_run_id: 2fd1a1b075434278bda5aa6148846eeb
+status: 2
+status_message: null

@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/syami/OneDrive/Desktop/springboard_creditpath_Ai/mlflow_runs/176050669943814112/models/m-27c7872ca0db4af89dbc9de6c4e28631/artifacts
+creation_timestamp: 1775117558828
+experiment_id: '176050669943814112'
+last_updated_timestamp: 1775117565717
+model_id: m-27c7872ca0db4af89dbc9de6c4e28631
+model_type: null
+name: lightgbm_model
+source_run_id: 03f7709f35a44f8a84a3276238b8cd2c
+status: 2
+status_message: null
