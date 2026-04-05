@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node (extra safety)
+node_modules/
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+
+# VS Code
+.vscode/
