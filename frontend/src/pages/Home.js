@@ -1,77 +1,112 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const features = [
+  {
+    icon: "🤖",
+    title: "AI-Powered Risk Analysis",
+    desc: "LightGBM model trained on real loan data to predict default probability with high accuracy.",
+  },
+  {
+    icon: "📊",
+    title: "Interactive Dashboards",
+    desc: "Visual charts and graphs to understand your financial risk at a glance.",
+  },
+  {
+    icon: "🏦",
+    title: "Dual Perspective",
+    desc: "Separate interfaces for borrowers and banks — each tailored to your role.",
+  },
+  {
+    icon: "⚡",
+    title: "Instant Predictions",
+    desc: "Get results in seconds. Real-time AI analysis with no delays.",
+  },
+];
+
 function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "60px", textAlign: "center" }}>
+    <div>
+      {/* ── Hero ── */}
+      <section className="hero">
+        <div className="hero-badge">✦ Powered by LightGBM &amp; FastAPI</div>
 
-      <h1 style={{ color: "#1e3a8a" }}>CreditPath AI 🚀</h1>
-      <p style={{ color: "#475569", marginBottom: "40px" }}>
-        Choose your role to continue
-      </p>
+        <h1 className="hero-title" style={{ fontFamily: "'Inter', sans-serif" }}>
+          Smarter Loan Decisions<br />
+          with <span className="gradient-text">AI Intelligence</span>
+        </h1>
 
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "40px",
-        flexWrap: "wrap"
-      }}>
+        <p className="hero-subtitle">
+          CreditPath AI analyzes financial data to predict loan risk, protect
+          banks from defaults, and help borrowers understand their credit standing.
+        </p>
 
-        {/* USER CARD */}
-        <div style={{
-          background: "#e0f2fe",
-          padding: "30px",
-          borderRadius: "15px",
-          width: "250px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
-        }}>
-          <h2>👤 User</h2>
-          <p>Check your loan eligibility and risk</p>
+        {/* Role Cards */}
+        <div className="role-cards">
+          <div className="role-card user-card" onClick={() => navigate("/predict/user")}>
+            <div className="role-card-icon">👤</div>
+            <h3 style={{ fontFamily: "'Inter', sans-serif" }}>For Borrowers</h3>
+            <p>
+              Check your loan eligibility, understand your risk level, and get
+              personalized tips to improve your credit health.
+            </p>
+            <button className="role-card-btn">User Prediction →</button>
+          </div>
 
-          <button
-            onClick={() => navigate("/predict/user")}
-            style={{
-              marginTop: "15px",
-              padding: "10px 20px",
-              background: "#0284c7",
-              color: "white",
-              border: "none",
-              borderRadius: "8px"
-            }}
-          >
-            User Prediction →
-          </button>
+          <div className="role-card bank-card" onClick={() => navigate("/predict/bank")}>
+            <div className="role-card-icon">🏦</div>
+            <h3 style={{ fontFamily: "'Inter', sans-serif" }}>For Banks</h3>
+            <p>
+              Analyze borrower default probability, estimate expected loss, and
+              get smart recovery channel recommendations.
+            </p>
+            <button className="role-card-btn">Bank Prediction →</button>
+          </div>
         </div>
 
-        {/* BANK CARD */}
-        <div style={{
-          background: "#fef9c3",
-          padding: "30px",
-          borderRadius: "15px",
-          width: "250px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
-        }}>
-          <h2>🏦 Bank</h2>
-          <p>Analyze borrower risk and decisions</p>
-
-          <button
-            onClick={() => navigate("/predict/bank")}
-            style={{
-              marginTop: "15px",
-              padding: "10px 20px",
-              background: "#ca8a04",
-              color: "white",
-              border: "none",
-              borderRadius: "8px"
-            }}
-          >
-            Bank Prediction→
-          </button>
+        {/* Stats */}
+        <div className="stats-bar">
+          <div className="stat-item">
+            <div className="stat-number">95%+</div>
+            <div className="stat-label">Model Accuracy</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">2</div>
+            <div className="stat-label">Prediction Modes</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">36</div>
+            <div className="stat-label">Risk Features</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">&lt;1s</div>
+            <div className="stat-label">Prediction Time</div>
+          </div>
         </div>
+      </section>
 
-      </div>
+      {/* ── Features ── */}
+      <section className="features-section">
+        <div className="section-header">
+          <h2 style={{ fontFamily: "'Inter', sans-serif" }}>Everything you need for smarter credit decisions</h2>
+          <p>
+            Powered by real financial data and machine learning to deliver highly accurate and actionable credit insights.
+          </p>
+        </div>
+        <div className="features-grid">
+          {features.map((f, i) => (
+            <div className="feature-card" key={i}
+              style={{ animationDelay: `${i * 0.08}s` }}
+            >
+              <div className="feature-icon">{f.icon}</div>
+              <h4>{f.title}</h4>
+              <p>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

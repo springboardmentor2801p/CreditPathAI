@@ -1,58 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    // Simulate send (no real backend for contact)
+    setTimeout(() => { setLoading(false); setSent(true); }, 1000);
+  };
+
   return (
-    <div style={{
-      maxWidth: "600px",
-      margin: "auto",
-      padding: "40px",
-      background: "#fef9c3",
-      borderRadius: "15px",
-      boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
-    }}>
+    <div className="contact-page">
 
-      <h1 style={{ color: "#92400e" }}>Contact Us</h1>
-
-      <p style={{ marginTop: "15px" }}>
-        Have questions or feedback? Reach out to us!
-      </p>
-
-      <div style={{ marginTop: "20px", lineHeight: "2" }}>
-        <p><b>Email:</b> support@creditpath.ai</p>
-        <p><b>Phone:</b> +91 9876543210</p>
-        <p><b>Location:</b> India</p>
+      {/* Header */}
+      <div className="contact-header">
+        <h1>Get in <span className="gradient-text">Touch</span></h1>
+        <p>Have questions or feedback about CreditPath AI? We'd love to hear from you.</p>
       </div>
 
-      <h3 style={{ marginTop: "25px" }}>📩 Send Message</h3>
+      {/* Info cards */}
+      <div className="contact-info-row">
+        <div className="contact-info-card">
+          <div className="contact-icon">📧</div>
+          <div className="contact-label">Email</div>
+          <div className="contact-value">support@creditpath.ai</div>
+        </div>
+        <div className="contact-info-card">
+          <div className="contact-icon">📍</div>
+          <div className="contact-label">Location</div>
+          <div className="contact-value">India</div>
+        </div>
+        <div className="contact-info-card">
+          <div className="contact-icon">📞</div>
+          <div className="contact-label">Phone</div>
+          <div className="contact-value">+91 98765 43210</div>
+        </div>
+      </div>
 
-      <input placeholder="Your Name" style={inputStyle} /><br />
-      <input placeholder="Your Email" style={inputStyle} /><br />
-      <textarea placeholder="Your Message" style={inputStyle} /><br />
+      {/* Form */}
+      <div className="contact-form">
+        <h3>📩 Send a Message</h3>
 
-      <button style={buttonStyle}>
-        Send Message
-      </button>
+        {sent ? (
+          <div className="success-message">
+            ✅ Message sent! We'll get back to you soon.
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Your Name</label>
+                <input
+                  className="form-input" type="text" name="name"
+                  placeholder="Sharshitha Reddy" required
+                  value={form.name} onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Email Address</label>
+                <input
+                  className="form-input" type="email" name="email"
+                  placeholder="you@example.com" required
+                  value={form.email} onChange={handleChange}
+                />
+              </div>
+            </div>
 
+            <div className="form-group" style={{ marginBottom: 16 }}>
+              <label>Subject</label>
+              <input
+                className="form-input" type="text" name="subject"
+                placeholder="Feedback / Query / Collaboration"
+                value={form.subject} onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: 24 }}>
+              <label>Message</label>
+              <textarea
+                className="form-input form-textarea" name="message"
+                placeholder="Write your message here…" required
+                value={form.message} onChange={handleChange}
+              />
+            </div>
+
+            <button className="btn-primary" type="submit" disabled={loading}>
+              {loading ? <><span className="spinner" /> Sending…</> : "Send Message →"}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "10px",
-  marginTop: "10px",
-  borderRadius: "8px",
-  border: "1px solid #ccc"
-};
-
-const buttonStyle = {
-  marginTop: "15px",
-  padding: "10px 20px",
-  background: "#ca8a04",
-  color: "white",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer"
-};
 
 export default Contact;

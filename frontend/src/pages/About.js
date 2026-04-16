@@ -1,44 +1,84 @@
 import React from "react";
 
+const techStack = [
+  { icon: "⚛️", label: "React.js" },
+  { icon: "🐍", label: "FastAPI" },
+  { icon: "🤖", label: "LightGBM" },
+  { icon: "📊", label: "Plotly.js" },
+  { icon: "🔗", label: "Axios" },
+  { icon: "🧪", label: "Pandas" },
+  { icon: "💾", label: "Joblib" },
+  { icon: "🛣️", label: "React Router" },
+];
+
 function About() {
   return (
-    <div style={{
-      maxWidth: "900px",
-      margin: "auto",
-      padding: "40px",
-      background: "#e0f2fe",
-      borderRadius: "15px",
-      boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
-    }}>
+    <div className="about-page">
 
-      <h1 style={{ color: "#1e3a8a" }}>About CreditPath AI</h1>
+      {/* Hero */}
+      <div className="about-hero">
+        <h1>About <span className="gradient-text">CreditPath AI</span></h1>
+        <p>
+          An intelligent loan risk prediction system designed to assist both
+          borrowers and financial institutions in making smarter, data-driven
+          decisions.
+        </p>
+      </div>
 
-      <p style={{ marginTop: "15px", color: "#334155" }}>
-        CreditPath AI is an intelligent loan risk prediction system designed
-        to assist both borrowers and financial institutions in making smarter decisions.
-      </p>
+      {/* Cards grid */}
+      <div className="about-grid">
+        <div className="about-card" style={{ animationDelay: "0s" }}>
+          <h3 style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-primary)" }}>What We Do</h3>
+          <ul>
+            <li>Predict borrower risk using a trained LightGBM AI model</li>
+            <li>Provide personalised recommendations for users</li>
+            <li>Assist banks in loan approval &amp; recovery decisions</li>
+            <li>Visualise risk through interactive charts</li>
+          </ul>
+        </div>
 
-      <h3 style={{ marginTop: "20px" }}>🚀 What We Do</h3>
-      <ul>
-        <li>Predict borrower risk using AI models</li>
-        <li>Provide recommendations for users</li>
-        <li>Assist banks in loan approval decisions</li>
-        <li>Visualize risk through charts and analytics</li>
-      </ul>
+        <div className="about-card" style={{ animationDelay: "0.08s" }}>
+          <h3 style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-primary)" }}>Our Goal</h3>
+          <ul>
+            <li>Reduce financial risk in the lending ecosystem</li>
+            <li>Improve decision-making with data-driven insights</li>
+            <li>Make credit analysis accessible to everyone</li>
+            <li>Bridge the gap between borrowers and lenders</li>
+          </ul>
+        </div>
 
-      <h3 style={{ marginTop: "20px" }}>🎯 Our Goal</h3>
-      <p>
-        To reduce financial risk and improve decision-making using data-driven insights.
-      </p>
+        <div className="about-card" style={{ animationDelay: "0.16s" }}>
+          <h3 style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-primary)" }}>Key Features</h3>
+          <ul>
+            <li>Dual interface for Users &amp; Banks</li>
+            <li>Real-time AI predictions (&lt; 1 second)</li>
+            <li>Interactive Plotly charts &amp; dashboards</li>
+            <li>Personalised financial tips &amp; suggestions</li>
+          </ul>
+        </div>
 
-      <h3 style={{ marginTop: "20px" }}>💡 Key Features</h3>
-      <ul>
-        <li>Dual Interface (User & Bank)</li>
-        <li>Real-time Predictions</li>
-        <li>Interactive Charts</li>
-        <li>Clean and Modern UI</li>
-      </ul>
+        <div className="about-card" style={{ animationDelay: "0.24s" }}>
+          <h3 style={{ fontFamily: "'Inter', sans-serif", color: "var(--text-primary)" }}>Future Enhancements</h3>
+          <ul>
+            <li>Integrate real-time banking API data</li>
+            <li>Advanced Explainable AI (XAI) models</li>
+            <li>Blockchain-based identity verification</li>
+            <li>Mobile Application Deployment</li>
+          </ul>
+        </div>
+      </div>
 
+      {/* Tech Stack */}
+      <div className="tech-stack">
+        <h2>🛠️ Tech Stack</h2>
+        <div className="tech-badges">
+          {techStack.map((t, i) => (
+            <div className="tech-badge" key={i}>
+              <span>{t.icon}</span> {t.label}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
