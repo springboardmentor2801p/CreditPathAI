@@ -3,36 +3,42 @@
 CreditPath AI is a Loan Risk Prediction and Decision Support System designed for both borrowers and financial institutions.
 It analyzes financial inputs and provides risk predictions, recommendations, and visual insights to support smarter loan decisions.
 
-###**📌 Features**
+---
 
-**###👤 User Side**
+**📌 Features**
+
+**👤 User Side**
 - Predicts loan risk level (Low / Medium / High)
 - Provides personalized recommendations
 - Gives actionable financial tips
 - Displays visual insights (charts & comparisons)
 - Tracks financial goals and prediction history
 
-**###🏦 Bank / Admin Side**
+**🏦 Bank / Admin Side**
 - Calculates default probability
 - Estimates expected loss
 - Analyzes borrower financial profile
 - Suggests loan decision (Approve / Monitor)
 - Provides recovery strategy recommendations
 
-**###🤖 AI Chatbot**
+**🤖 AI Chatbot**
 - Interactive assistant for user queries
 - Supports risk prediction through chat
 - Provides instant responses and guidance
 
-**###🛠️ Tech Stack**
-Frontend: React.js
-Backend: FastAPI
-Machine Learning: LightGBM
-Visualization: Plotly.js
-API Communication: Axios
-Tools: VS Code, Google Colab
+---
 
-**##📂 Project Structure**
+**🛠️ Tech Stack**
+- Frontend: React.js
+- Backend: FastAPI
+- Machine Learning: LightGBM
+- Visualization: Plotly.js
+- API Communication: Axios
+- Tools: VS Code, Google Colab
+
+---
+
+**📂 Project Structure**
 CreditPathAI/
 │── data/
 │   ├── loan_data_sample.csv
@@ -65,6 +71,8 @@ CreditPathAI/
 │
 │── README.md
 
+---
+
 ▶️ How to Run the Project
 🔹 Backend (FastAPI)
 cd backend
@@ -80,18 +88,24 @@ npm start
 
 Runs at: http://localhost:3000
 
-**###📊 Outputs**
+---
+
+**📊 Outputs**
 - User Risk Prediction with recommendations
 - Bank Risk Analysis with decision strategy
 - Default probability & expected loss
 - Interactive charts and dashboards
 
-**###🔐 Security**
+---
+
+**🔐 Security**
 - Login & registration system
 - Role-based access (User / Admin)
 - PIN-based verification
 
-**###📌 Modules**
+---
+
+**📌 Modules**
 - Home Page
 - Authentication (Login / Register)
 - User Dashboard
@@ -101,15 +115,21 @@ Runs at: http://localhost:3000
 - Visual Analytics
 - AI Chatbot
 
-**###🔮 Future Enhancements**
+---
+
+**🔮 Future Enhancements**
 - Real-time financial data integration
 - Advanced fraud detection system
 - Improved explainable AI features
 - Deployment as full-scale web application
 
-👩‍💻 Author
+---
+
+**👩‍💻 Author**
 - R. Sai Sharshitha Reddy
 
-🙏 Acknowledgement
+---
+
+**🙏 Acknowledgement**
 - Developed as part of Infosys Virtual Internship 6.0
 - Guided by Infosys Springboard Mentor – Shanmuka Priya
